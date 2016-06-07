@@ -1,4 +1,5 @@
 #pragma once
+#include <system.hpp>
 #include <SFML/Graphics.hpp>
 
 /**
@@ -7,7 +8,7 @@
  * Display a window with 2 views, one for the game, the second for the score
  *
  */
-class Display {
+class Display : public System {
  private:
   sf::RenderWindow mWindow;
   sf::View mViewScore;
@@ -17,5 +18,5 @@ class Display {
 
  public:
   Display();
-  void run();
+  void run() override;
 };
