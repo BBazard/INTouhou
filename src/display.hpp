@@ -1,6 +1,10 @@
 #pragma once
-#include <system.hpp>
+#include "system.hpp"
 #include <SFML/Graphics.hpp>
+#include <string>
+#include <sstream>
+#include "position.hpp"
+#include "sprite.hpp"
 
 /**
  * @brief Display the window
@@ -13,10 +17,16 @@ class Display : public System {
   sf::RenderWindow mWindow;
   sf::View mViewScore;
   sf::View mViewGame;
-  sf::Sprite mSpriteBackground;
-  sf::Texture mTextureBackground;
+  Sprite mSpriteBackground;
+//  sf::Texture mTextureBackground;
+  Sprite mVaisseau;
+
+  sf::Text mScoreText;
+  sf::Font f;
+
+  int mScore = 500000;
 
  public:
   Display();
-  void run() override;
+  void run(World &world) override;
 };

@@ -1,5 +1,7 @@
 #pragma once
 
+class World;
+
 /**
  * @brief
  *
@@ -8,5 +10,5 @@
  */
 class System {
  public:
-  virtual void run() = 0;
+  virtual void run(World &world) = 0;
 };

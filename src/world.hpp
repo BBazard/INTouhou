@@ -3,6 +3,9 @@
 #include <vector>
 #include "component.hpp"
 #include "system.hpp"
+#include "life.hpp"
+#include "sprite.hpp"
+#include "position.hpp"
 #include "display.hpp"
 
 typedef enum {
@@ -28,21 +31,16 @@ class World {
   // systems
   Display mDisplay;
 
-  // std::vector<Animation> mAnimation
-  // std::vector<Dynamics> mDynamics
-  // std::vector<Event> mEvent
-  // std::vector<Hitbox> mHitbox
-  // std::vector<Life> mLife
-  // std::vector<Position> mPosition
-  // std::vector<Shoot> mShoot
-  // std::vector<Sprite> mSprite
-  // std::vector<Target> mTarget
+  //std::vector<Animation> mAnimation;
+  //std::vector<Dynamics> mDynamics;
+  //std::vector<Event> mEvent;
+  //std::vector<Hitbox> mHitbox;
+  std::vector<Life> mLife;
+  std::vector<Position> mPosition;
+  //std::vector<Shoot> mShoot;
+  std::vector<Sprite> mSprite;
+  //std::vector<Target> mTarget;
 
-  // Component
-  // std::vector<Life> mLife;
-  // std::vector<Position> mPosition;
-  // std::vector<Sprite> mSprite;
-  // std::vector<Sprite> mSprite;
 
   std::vector<std::vector<bool>> mBitset;
 
@@ -52,7 +50,12 @@ class World {
   void createBullet();
   void createEnemy();
   void createPlayer();
+  void run();
+  std::vector<bool> getBitset(ComponentType type);
+  std::vector<Sprite> getSprites();
+  std::vector<Position> getPositions();
 
  private:
   void createEntity();
+
 };

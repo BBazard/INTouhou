@@ -1,9 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "display.hpp"
+#include "world.hpp"
 
 int main() {
-  Display ds;
-  ds.run();
+  World w;
+  w.run();
   return 0;
 }

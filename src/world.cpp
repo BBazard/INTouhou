@@ -19,6 +19,10 @@ void World::createBomb() {
   // mBitset.back()[TARGET] = true;
 }
 
+void World::run() {
+  mDisplay.run(*this);
+}
+
 void World::createPlayer() {
   createEntity();
 
@@ -68,3 +72,14 @@ void World::createEntity() {
   mBitset.push_back(std::vector<bool>(false));
 }
 
+std::vector<bool> World::getBitset(ComponentType type) {
+  return mBitset[type];
+}
+
+std::vector<Sprite> World::getSprites() {
+  return mSprite;
+}
+
+std::vector<Position> World::getPositions() {
+  return mPosition;
+}

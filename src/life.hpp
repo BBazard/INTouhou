@@ -1,16 +1,12 @@
-#ifndef LIFE_H
-#define LIFE_H
-
+#pragma once
 
 class Life {
  private:
   int mLife;
 
  public:
-  Life(int initLife);
+  explicit Life(int initLife);
   void increaseLife();
   void decreaseLife();
   int getLife();
 };
-
-#endif  // LIFE_H
