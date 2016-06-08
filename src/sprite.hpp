@@ -11,6 +11,6 @@ class Sprite {
 
  public:
   explicit Sprite(std::string img);
-  sf::Sprite getSprite();
+  sf::Sprite& getSprite();
   void setPosition(Position pos);
 };

@@ -52,7 +52,9 @@ void Display::run(World &world) {
         sf::Sprite sprite = world.getSprites()[i].getSprite();
         sprite.setPosition(sf::Vector2f(world.getPositions()[i].x(),
                                         world.getPositions()[i].y()));
+
         mWindow.draw(sprite);
+
       }
     }
 

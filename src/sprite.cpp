@@ -8,7 +8,7 @@ Sprite::Sprite(std::string img) {
   mSprite.setTexture(mTexture);
 }
 
-sf::Sprite Sprite::getSprite() {
+sf::Sprite& Sprite::getSprite() {
   return mSprite;
 }
 
