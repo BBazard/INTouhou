@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "component.hpp"
 #include "system.hpp"
 #include "display.hpp"
@@ -17,7 +18,6 @@ typedef enum {
   COMPONENTNUMBER,
 } ComponentType;
 
-
 /**
  * @brief
  *
@@ -28,26 +28,31 @@ class World {
   // systems
   Display mDisplay;
 
-  //std::vector<Animation> mAnimation
-  //std::vector<Dynamics> mDynamics
-  //std::vector<Event> mEvent
-  //std::vector<Hitbox> mHitbox
-  //std::vector<Life> mLife
-  //std::vector<Position> mPosition
-  //std::vector<Shoot> mShoot
-  //std::vector<Sprite> mSprite
-  //std::vector<Target> mTarget
+  // std::vector<Animation> mAnimation
+  // std::vector<Dynamics> mDynamics
+  // std::vector<Event> mEvent
+  // std::vector<Hitbox> mHitbox
+  // std::vector<Life> mLife
+  // std::vector<Position> mPosition
+  // std::vector<Shoot> mShoot
+  // std::vector<Sprite> mSprite
+  // std::vector<Target> mTarget
 
   // Component
- // std::vector<Life> mLife;
- // std::vector<Position> mPosition;
- // std::vector<Sprite> mSprite;
- // std::vector<Sprite> mSprite;
+  // std::vector<Life> mLife;
+  // std::vector<Position> mPosition;
+  // std::vector<Sprite> mSprite;
+  // std::vector<Sprite> mSprite;
 
   std::vector<std::vector<bool>> mBitset;
 
  public:
   World();
-  void createEntity();
+  void createBomb();
+  void createBullet();
+  void createEnemy();
   void createPlayer();
+
+ private:
+  void createEntity();
 };
