@@ -4,7 +4,8 @@
 
 World::World() :
   mWindow(sf::VideoMode(600, 800), "INTouhou"),
-  mDisplay(mWindow) {
+  mDisplay(mWindow),
+  mKeyController(mWindow) {
   // // entity number 0 is empty
   for (int i = 0; i < COMPONENTNUMBER; ++i)
     mBitset.push_back(std::vector<bool>());
@@ -44,13 +45,17 @@ void World::run() {
   createPlayer();
 
   while (mWindow.isOpen()) {
-    sf::Event event;
-    while (mWindow.pollEvent(event)) {
-      if (event.type == sf::Event::Closed)
-        mWindow.close();
-      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-        mWindow.close();
-    }
+
+//      getEvent(0).pushDirection(UP);
+//        if(getEvent(0).popDirection() == UP) {
+//        std::cout << getPositions()[0].y() << std::endl;
+//        getPositions()[0].move(0, -100);
+//        std::cout << getPositions()[0].y() << std::endl;
+//       }
+
+
+    mKeyController.run(*this);
+    mPlayerMove.run(*this);
     mDisplay.run(*this);
   }
 }
@@ -60,7 +65,7 @@ void World::createPlayer() {
 
   // mBitset[ANIMATION].back() = true;
   // mBitset[DYNAMICS].back() = true;
-  //mBitset[EVENT].back() = true;
+  mBitset[EVENT].back() = true;
   //mBitset[HITBOX].back() = true;
   mBitset[LIFE].back() = true;
   mBitset[POSITION].back() = true;
@@ -72,6 +77,7 @@ void World::createPlayer() {
   // @todo change 200 with display
   mPosition.push_back(Position(200, 500));
   mLife.push_back(Life(5));
+  mEvent.push_back(Event());
 }
 
 void World::createEnemy() {
@@ -112,14 +118,14 @@ void World::createEntity() {
     mBitset[i].push_back(false);
 }
 
-std::vector<bool> World::getBitset(ComponentType type) {
-  return mBitset[type];
-}
+//std::vector<bool> World::getBitset(ComponentType type) {
+//  return mBitset[type];
+//}
 
-std::vector<Sprite> World::getSprites() {
-  return mSprite;
-}
+//std::vector<Sprite> World::getSprites() {
+//  return mSprite;
+//}
 
-std::vector<Position> World::getPositions() {
-  return mPosition;
-}
+//std::vector<Position> World::getPositions() {
+//  return mPosition;
+//}

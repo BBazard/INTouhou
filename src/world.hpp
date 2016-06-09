@@ -7,6 +7,9 @@
 #include "sprite.hpp"
 #include "position.hpp"
 #include "display.hpp"
+#include "event.hpp"
+#include "playermove.hpp"
+#include "keycontroller.hpp"
 
 typedef enum {
   ANIMATION,
@@ -31,10 +34,12 @@ class World {
   sf::RenderWindow mWindow;
   // systems
   Display mDisplay;
+  PlayerMove mPlayerMove;
+  KeyController mKeyController;
 
   //std::vector<Animation> mAnimation;
   //std::vector<Dynamics> mDynamics;
-  //std::vector<Event> mEvent;
+  std::vector<Event> mEvent;
   //std::vector<Hitbox> mHitbox;
   std::vector<Life> mLife;
   std::vector<Position> mPosition;
@@ -52,9 +57,11 @@ class World {
   void createEnemy();
   void createPlayer();
   void run();
-  std::vector<bool> getBitset(ComponentType type);
-  std::vector<Sprite> getSprites();
-  std::vector<Position> getPositions();
+
+  std::vector<bool>& getBitset(ComponentType type) { return mBitset[type]; }
+  std::vector<Sprite>& getSprites() { return mSprite; }
+  std::vector<Position>& getPositions() {return mPosition; }
+  Event& getEvent(int ind) { return mEvent[ind]; }
 
  private:
   void createEntity();

@@ -21,6 +21,9 @@ class Display : public System {
 //  sf::Texture mTextureBackground;
   Sprite mVaisseau;
 
+  std::map<std::string, sf::Sprite> mSprites;
+  sf::Texture textureShip;
+
   sf::Text mScoreText;
   sf::Font f;
 
