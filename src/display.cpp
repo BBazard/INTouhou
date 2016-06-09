@@ -45,19 +45,15 @@ void Display::run(World &world) {
     mScoreText.setString(score.str());
     mWindow.draw(mScoreText);
     mWindow.setView(mViewGame);
-    mWindow.draw(mSpriteBackground.getSprite());
+    mWindow.draw(mSpriteBackground.getSprite(0.0, 0.0));
 
     for (size_t i = 0; i < world.getBitset(SPRITE).size(); ++i) {
       if (world.getBitset(SPRITE)[i]) {
-        sf::Sprite sprite = world.getSprites()[i].getSprite();
-        sprite.setPosition(sf::Vector2f(world.getPositions()[i].x(),
-                                        world.getPositions()[i].y()));
-
-        mWindow.draw(sprite);
-
+        float X = world.getPositions()[i].x();
+        float Y = world.getPositions()[i].y();
+        mWindow.draw(world.getSprites()[i].getSprite(X, Y));
       }
     }
-
        mWindow.display();
   }
 }

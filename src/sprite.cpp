@@ -1,17 +1,24 @@
 #include "sprite.hpp"
+#include <iostream>
+#include <map>
 #include <string>
 
-Sprite::Sprite(std::string img) {
-  if (!mTexture.loadFromFile(img))
-    std::cout << "erreur" << std::endl;
+std::map<std::string, sf::Texture> Sprite::mPoolTexture;
+std::map<std::string, sf::Sprite> Sprite::mPoolSprite;
 
-  mSprite.setTexture(mTexture);
+Sprite::Sprite(const std::string &img) {
+
+  if (mPoolTexture.insert(std::make_pair(img, sf::Texture())).second) {
+    if (!mPoolTexture[img].loadFromFile(img))
+      std::cout << "erreur" << std::endl;
+    mPoolSprite.insert(std::make_pair(img, sf::Sprite()));
+    mPoolSprite[img].setTexture(mPoolTexture[img]);
+  }
+  mSprite = &(mPoolSprite[img]);
 }
 
-sf::Sprite& Sprite::getSprite() {
-  return mSprite;
+sf::Sprite& Sprite::getSprite(float x, float y) {
+  mSprite->setPosition(x, y);
+  return *mSprite;
 }
 
-void Sprite::setPosition(Position pos) {
-  mSprite.setPosition(pos.x(), pos.y());
-}

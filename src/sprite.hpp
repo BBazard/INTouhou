@@ -2,15 +2,17 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
-#include "position.hpp"
+#include <map>
 
 class Sprite {
  private:
-  sf::Sprite mSprite;
-  sf::Texture mTexture;
+  static std::map<std::string, sf::Texture> mPoolTexture;
+  static std::map<std::string, sf::Sprite> mPoolSprite;
+  sf::Sprite *mSprite;
+  //sf::Texture mTexture;
 
  public:
-  explicit Sprite(std::string img);
-  sf::Sprite& getSprite();
-  void setPosition(Position pos);
+  Sprite(const std::string &img);
+  sf::Sprite& getSprite(float x, float y);
 };
+
