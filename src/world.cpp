@@ -1,7 +1,10 @@
 #include "world.hpp"
+#include <SFML/Graphics.hpp>
 #include <vector>
 
-World::World() {
+World::World() :
+  mWindow(sf::VideoMode(600, 800), "INTouhou"),
+  mDisplay(mWindow) {
   // // entity number 0 is empty
   for (int i = 0; i < COMPONENTNUMBER; ++i)
     mBitset.push_back(std::vector<bool>());
@@ -39,7 +42,17 @@ void World::createBomb() {
 
 void World::run() {
   createPlayer();
-  mDisplay.run(*this);
+
+  while (mWindow.isOpen()) {
+    sf::Event event;
+    while (mWindow.pollEvent(event)) {
+      if (event.type == sf::Event::Closed)
+        mWindow.close();
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+        mWindow.close();
+    }
+    mDisplay.run(*this);
+  }
 }
 
 void World::createPlayer() {

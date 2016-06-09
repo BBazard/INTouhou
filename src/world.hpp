@@ -28,6 +28,7 @@ typedef enum {
  */
 class World {
  private:
+  sf::RenderWindow mWindow;
   // systems
   Display mDisplay;
 

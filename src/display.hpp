@@ -14,7 +14,7 @@
  */
 class Display : public System {
  private:
-  sf::RenderWindow mWindow;
+  sf::RenderWindow &mWindow;
   sf::View mViewScore;
   sf::View mViewGame;
   Sprite mSpriteBackground;
@@ -27,6 +27,6 @@ class Display : public System {
   int mScore = 500000;
 
  public:
-  Display();
+  Display(sf::RenderWindow &w);
   void run(World &world) override;
 };

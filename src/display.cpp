@@ -7,8 +7,8 @@
  *
  * @todo exceptions
  */
-Display::Display() :
-  mWindow(sf::VideoMode(600, 800), "INTouhou"),
+Display::Display(sf::RenderWindow &w) :
+  mWindow(w),
   mSpriteBackground("../sprite/background.png"),
   mVaisseau("../sprite/vaisseau.png") {
   int width = mWindow.getSize().x;
@@ -28,32 +28,20 @@ Display::Display() :
 }
 
 void Display::run(World &world) {
-  while (mWindow.isOpen()) {
-    sf::Event event;
-    while (mWindow.pollEvent(event)) {
-      if (event.type == sf::Event::Closed)
-        mWindow.close();
-      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-        mWindow.close();
+  mWindow.clear(sf::Color::Black);
+  mWindow.setView(mViewScore);
+  std::ostringstream score;
+  score << mScore;
+  mScoreText.setString(score.str());
+  mWindow.draw(mScoreText);
+  mWindow.setView(mViewGame);
+  mWindow.draw(mSpriteBackground.getSprite(0.0, 0.0));
+  for (size_t i = 0; i < world.getBitset(SPRITE).size(); ++i) {
+    if (world.getBitset(SPRITE)[i]) {
+      float X = world.getPositions()[i].x();
+      float Y = world.getPositions()[i].y();
+      mWindow.draw(world.getSprites()[i].getSprite(X, Y));
     }
-
-    mWindow.clear(sf::Color::Black);
-
-    mWindow.setView(mViewScore);
-    std::ostringstream score;
-    score << mScore;
-    mScoreText.setString(score.str());
-    mWindow.draw(mScoreText);
-    mWindow.setView(mViewGame);
-    mWindow.draw(mSpriteBackground.getSprite(0.0, 0.0));
-
-    for (size_t i = 0; i < world.getBitset(SPRITE).size(); ++i) {
-      if (world.getBitset(SPRITE)[i]) {
-        float X = world.getPositions()[i].x();
-        float Y = world.getPositions()[i].y();
-        mWindow.draw(world.getSprites()[i].getSprite(X, Y));
-      }
-    }
-       mWindow.display();
   }
+  mWindow.display();
 }
