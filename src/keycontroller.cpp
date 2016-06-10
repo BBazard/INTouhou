@@ -1,6 +1,6 @@
 #include "keycontroller.hpp"
-#include "world.hpp"
 #include <iostream>
+#include "world.hpp"
 
 KeyController::KeyController(sf::RenderWindow &window) : mWindow(window) {
 }

@@ -1,8 +1,9 @@
 #pragma once
-#include "system.hpp"
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <sstream>
+#include <map>
+#include "system.hpp"
 #include "position.hpp"
 #include "sprite.hpp"
 

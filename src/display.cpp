@@ -1,6 +1,6 @@
+#include "display.hpp"
 #include <iostream>
 #include "world.hpp"
-#include "display.hpp"
 
 /**
  * @brief

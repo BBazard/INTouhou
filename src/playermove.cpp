@@ -1,8 +1,7 @@
 #include "playermove.hpp"
 #include "world.hpp"
 
-PlayerMove::PlayerMove()
-{
+PlayerMove::PlayerMove() {
 
 }
 
