@@ -12,6 +12,7 @@ class Sprite {
   //sf::Texture mTexture;
 
  public:
+  Sprite();
   Sprite(const std::string &img);
   sf::Sprite& getSprite(float x, float y);
   int getSizeX();

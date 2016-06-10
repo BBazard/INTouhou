@@ -8,6 +8,7 @@ class Position {
   int mX;
   int mY;
  public:
+  Position();
   Position(int x, int y);
   void move(int x, int y);
   void setX(int x);

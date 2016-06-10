@@ -1,5 +1,7 @@
 #include "life.hpp"
 
+Life::Life() {}
+
 Life::Life(int initLife) : mLife(initLife) {}
 
 void Life::decreaseLife() { --mLife; }

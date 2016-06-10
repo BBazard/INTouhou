@@ -5,7 +5,8 @@ class Life {
   int mLife;
 
  public:
-  explicit Life(int initLife);
+  Life();
+  Life(int initLife);
   void increaseLife();
   void decreaseLife();
   int getLife();

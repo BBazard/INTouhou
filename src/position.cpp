@@ -1,7 +1,8 @@
 #include "position.hpp"
 
-Position::Position(int x, int y) : mX(x), mY(y) {
-}
+Position::Position() {}
+
+Position::Position(int x, int y) : mX(x), mY(y) {}
 
 int Position::x() { return mX; }
 
