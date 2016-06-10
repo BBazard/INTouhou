@@ -14,5 +14,7 @@ class Sprite {
  public:
   Sprite(const std::string &img);
   sf::Sprite& getSprite(float x, float y);
+  int getSizeX();
+  int getSizeY();
 };
 

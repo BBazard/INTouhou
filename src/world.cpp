@@ -3,7 +3,7 @@
 #include <vector>
 
 World::World() :
-  mWindow(sf::VideoMode(600, 800), "INTouhou"),
+  mWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "INTouhou"),
   mDisplay(mWindow),
   mKeyController(mWindow) {
   mWindow.setKeyRepeatEnabled(false);

@@ -21,3 +21,11 @@ sf::Sprite& Sprite::getSprite(float x, float y) {
   return *mSprite;
 }
 
+
+int Sprite::getSizeX() {
+  return mSprite->getTexture()->getSize().x;
+}
+
+int Sprite::getSizeY() {
+  return mSprite->getTexture()->getSize().y;
+}
