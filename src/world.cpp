@@ -6,6 +6,8 @@ World::World() :
   mWindow(sf::VideoMode(600, 800), "INTouhou"),
   mDisplay(mWindow),
   mKeyController(mWindow) {
+  mWindow.setKeyRepeatEnabled(false);
+  mWindow.setFramerateLimit(60);
   // // entity number 0 is empty
   for (int i = 0; i < COMPONENTNUMBER; ++i)
     mBitset.push_back(std::vector<bool>());
@@ -41,7 +43,7 @@ void World::createPlayer() {
   // mBitset[ANIMATION].back() = true;
   // mBitset[DYNAMICS].back() = true;
   mBitset[EVENT].back() = true;
-  //mBitset[HITBOX].back() = true;
+  // mBitset[HITBOX].back() = true;
   mBitset[LIFE].back() = true;
   mBitset[POSITION].back() = true;
   // mBitset[SHOOT].back() = true;
@@ -61,7 +63,7 @@ void World::createEnemy() {
   // mBitset[ANIMATION].back() = true;
   // mBitset[DYNAMICS].back() = true;
   // mBitset[EVENT].back() = true;
-  //mBitset[HITBOX].back() = true;
+  // mBitset[HITBOX].back() = true;
   mBitset[LIFE].back() = true;
   mBitset[POSITION].back() = true;
   // mBitset[SHOOT].back() = true;
@@ -75,7 +77,7 @@ void World::createBullet() {
   // mBitset[ANIMATION].back() = true;
   // mBitset[DYNAMICS].back() = true;
   // mBitset[EVENT].back() = true;
-  //mBitset[HITBOX].back() = true;
+  // mBitset[HITBOX].back() = true;
   // mBitset[LIFE].back() = true;
   mBitset[POSITION].back() = true;
   // mBitset[SHOOT].back() = true;

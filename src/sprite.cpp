@@ -7,7 +7,6 @@ std::map<std::string, sf::Texture> Sprite::mPoolTexture;
 std::map<std::string, sf::Sprite> Sprite::mPoolSprite;
 
 Sprite::Sprite(const std::string &img) {
-
   if (mPoolTexture.insert(std::make_pair(img, sf::Texture())).second) {
     if (!mPoolTexture[img].loadFromFile(img))
       std::cout << "erreur" << std::endl;

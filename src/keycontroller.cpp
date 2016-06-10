@@ -9,16 +9,29 @@ void KeyController::run(World &world) {
     while (mWindow.pollEvent(event)) {
       if (event.type == sf::Event::Closed)
         mWindow.close();
-      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+
+      if (event.type == sf::Event::KeyPressed) {
+       if (event.key.code == sf::Keyboard::Escape)
         mWindow.close();
-      if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Up)) {
-      world.getEvent(0).pushDirection(UP);
-       }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-      world.getEvent(0).pushDirection(DOWN);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-      world.getEvent(0).pushDirection(LEFT);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-      world.getEvent(0).pushDirection(RIGHT);
+       if (event.key.code == sf::Keyboard::Up)
+        world.getEvent(0).pushDirection(UP);
+       if (event.key.code == sf::Keyboard::Down)
+        world.getEvent(0).pushDirection(DOWN);
+       if (event.key.code == sf::Keyboard::Left)
+        world.getEvent(0).pushDirection(LEFT);
+       if (event.key.code == sf::Keyboard::Right)
+        world.getEvent(0).pushDirection(RIGHT);
+      }
+
+      if (event.type == sf::Event::KeyReleased) {
+        if (event.key.code == sf::Keyboard::Up)
+         world.getEvent(0).popDirection(UP);
+        if (event.key.code == sf::Keyboard::Down)
+         world.getEvent(0).popDirection(DOWN);
+        if (event.key.code == sf::Keyboard::Left)
+         world.getEvent(0).popDirection(LEFT);
+        if (event.key.code == sf::Keyboard::Right)
+         world.getEvent(0).popDirection(RIGHT);
+      }
   }
 }

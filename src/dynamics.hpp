@@ -5,10 +5,9 @@
 class Dynamics {
  private:
   int mSpeed;
-  //int mAccel;
-  
+  // int mAccel;
+
  public:
   Dynamics();
   Position move(int x, int y);
 };
-
