@@ -90,3 +90,19 @@ void World::createEntity() {
     mBitset[i].push_back(false);
 }
 
+
+std::vector<bool>& World::getBitset(ComponentType type) {
+  return mBitset[type];
+}
+
+std::vector<Sprite>& World::getSprites() {
+   return mSprite;
+}
+
+std::vector<Position>& World::getPositions() {
+  return mPosition;
+}
+
+Event& World::getEvent(int ind) {
+  return mEvent[ind];
+}

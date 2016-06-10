@@ -58,10 +58,10 @@ class World {
   void createPlayer();
   void run();
 
-  std::vector<bool>& getBitset(ComponentType type) { return mBitset[type]; }
-  std::vector<Sprite>& getSprites() { return mSprite; }
-  std::vector<Position>& getPositions() {return mPosition; }
-  Event& getEvent(int ind) { return mEvent[ind]; }
+  std::vector<bool>& getBitset(ComponentType type);
+  std::vector<Sprite>& getSprites();
+  std::vector<Position>& getPositions();
+  Event& getEvent(int ind);
 
  private:
   void createEntity();
