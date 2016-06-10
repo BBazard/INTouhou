@@ -1,13 +1,6 @@
 #pragma once
 #include <queue>
-
-typedef enum {
-  UP,
-  DOWN,
-  LEFT,
-  RIGHT,
-  NONE,
-} Direction;
+#include "component.hpp"
 
 class Event {
  private:

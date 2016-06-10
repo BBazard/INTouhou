@@ -1,6 +1,7 @@
 #include "event.hpp"
 #include <queue>
 #include <iostream>
+#include "component.hpp"
 
 Event::Event() {
  std::cout << mMove.size() << " empty: " << mMove.empty() << std::endl;
