@@ -4,7 +4,6 @@
 #include <sstream>
 #include <map>
 #include "system.hpp"
-#include "position.hpp"
 #include "sprite.hpp"
 
 /**
@@ -19,7 +18,6 @@ class Display : public System {
   sf::View mViewScore;
   sf::View mViewGame;
   Sprite mSpriteBackground;
-//  sf::Texture mTextureBackground;
   Sprite mVaisseau;
 
   std::map<std::string, sf::Sprite> mSprites;

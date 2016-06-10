@@ -9,22 +9,6 @@ World::World() :
   // // entity number 0 is empty
   for (int i = 0; i < COMPONENTNUMBER; ++i)
     mBitset.push_back(std::vector<bool>());
-
-  //for (int i = 0; i < COMPONENTNUMBER; ++i)
-    //mBitset[i].push_back(false);
-
-  //for (auto n : mBitset[0])
-    //n = false;
-
-   //mAnimation.push_back();
-   //mDynamics.push_back();
-   //mEvent.push_back();
-   //mHitbox.push_back();
-   //mLife.push_back(Life(0));
-   //mPosition.push_back(Position(0, 0));
-   //mShoot.push_back();
-   //mSprite.push_back(Sprite("nofile"));
-   //mTarget.push_back();
 }
 
 void World::createBomb() {
@@ -45,15 +29,6 @@ void World::run() {
   createPlayer();
 
   while (mWindow.isOpen()) {
-
-//      getEvent(0).pushDirection(UP);
-//        if(getEvent(0).popDirection() == UP) {
-//        std::cout << getPositions()[0].y() << std::endl;
-//        getPositions()[0].move(0, -100);
-//        std::cout << getPositions()[0].y() << std::endl;
-//       }
-
-
     mKeyController.run(*this);
     mPlayerMove.run(*this);
     mDisplay.run(*this);
@@ -109,23 +84,7 @@ void World::createBullet() {
 }
 
 void World::createEntity() {
- // for (unsigned long i = 0; i < mBitset.size(); ++i)
- //   for (auto n : mBitset[i])
- //     n = false;
-  //mBitset.push_back(std::vector<bool>(false));
-
   for (int i = 0; i < COMPONENTNUMBER; ++i)
     mBitset[i].push_back(false);
 }
 
-//std::vector<bool> World::getBitset(ComponentType type) {
-//  return mBitset[type];
-//}
-
-//std::vector<Sprite> World::getSprites() {
-//  return mSprite;
-//}
-
-//std::vector<Position> World::getPositions() {
-//  return mPosition;
-//}

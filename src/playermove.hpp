@@ -1,5 +1,4 @@
-#ifndef PLAYERMOVE_H
-#define PLAYERMOVE_H
+#pragma once
 #include "system.hpp"
 
 class PlayerMove : public System{
@@ -8,4 +7,3 @@ class PlayerMove : public System{
   void run(World &world);
 };
 
-#endif // PLAYERMOVE_H
