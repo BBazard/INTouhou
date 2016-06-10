@@ -52,7 +52,7 @@ void World::createPlayer() {
   Sprite playerSprite("../sprite/vaisseau.png");
   mSprite.push_back(playerSprite);
   // @todo change 200 with display
-  mPosition.push_back(Position(200, 500));
+  mPosition.push_back(Position(WINDOW_WIDTH / 2 - 40, 5 * WINDOW_HEIGHT / 6));
   mLife.push_back(Life(5));
   mEvent.push_back(Event());
 }
