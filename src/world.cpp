@@ -29,8 +29,8 @@ void World::createBomb() {
 
 void World::run() {
   createPlayer();
-  int X = World::getPositions(0).x() + World::getSprites(0).getSizeX()/2;
-  int Y = World::getPositions(0).y() + World::getSprites(0).getSizeY()/2;
+  int X = World::getPosition(0).x() + World::getSprite(0).getSizeX()/2;
+  int Y = World::getPosition(0).y() + World::getSprite(0).getSizeY()/2;
   Position m(X,Y);
   createBullet(m);
 
@@ -117,11 +117,11 @@ std::vector<bool>& World::getBitset(ComponentType type) {
   return mBitset[type];
 }
 
-Sprite& World::getSprites(int ind) {
+Sprite& World::getSprite(int ind) {
   return mSprite[ind];
 }
 
-Position& World::getPositions(int ind) {
+Position& World::getPosition(int ind) {
   return mPosition[ind];
 }
 
@@ -129,7 +129,7 @@ Event& World::getEvent(int ind) {
   return mEvent[ind];
 }
 
-Dynamics& World::getDynamics(int ind) {
+Dynamics& World::getDynamic(int ind) {
   return mDynamics[ind];
 }
 

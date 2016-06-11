@@ -63,10 +63,10 @@ class World {
   void run();
 
   std::vector<bool>& getBitset(ComponentType type);
-  Sprite& getSprites(int ind);
-  Position& getPositions(int ind);
+  Sprite& getSprite(int ind);
+  Position& getPosition(int ind);
   Event& getEvent(int ind);
-  Dynamics& getDynamics(int ind);
+  Dynamics& getDynamic(int ind);
 
  private:
   void createEntity();
