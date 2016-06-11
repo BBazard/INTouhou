@@ -57,7 +57,7 @@ class World {
  public:
   World();
   void createBomb();
-  void createBullet();
+  void createBullet(Position &pos);
   void createEnemy();
   void createPlayer();
   void run();
