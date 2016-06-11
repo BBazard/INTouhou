@@ -8,6 +8,12 @@ typedef enum {
   NONE,
 } Direction;
 
+typedef enum {
+  PLAYER,
+  ENEMY,
+  NOTARGET,
+} TargetType;
+
 class Component {
  public:
  private:

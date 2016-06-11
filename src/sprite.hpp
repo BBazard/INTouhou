@@ -9,7 +9,6 @@ class Sprite {
   static std::map<std::string, sf::Texture> mPoolTexture;
   static std::map<std::string, sf::Sprite> mPoolSprite;
   sf::Sprite *mSprite;
-  //sf::Texture mTexture;
 
  public:
   Sprite();

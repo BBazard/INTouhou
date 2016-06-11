@@ -10,6 +10,8 @@
 #include "event.hpp"
 #include "playermove.hpp"
 #include "keycontroller.hpp"
+#include "bulletmove.hpp"
+#include "target.hpp"
 
 typedef enum {
   ANIMATION,
@@ -36,6 +38,7 @@ class World {
   Display mDisplay;
   PlayerMove mPlayerMove;
   KeyController mKeyController;
+  BulletMove mBulletMove;
 
   //std::vector<Animation> mAnimation;
   //std::vector<Dynamics> mDynamics;
@@ -45,7 +48,7 @@ class World {
   std::vector<Position> mPosition;
   //std::vector<Shoot> mShoot;
   std::vector<Sprite> mSprite;
-  //std::vector<Target> mTarget;
+  std::vector<Target> mTarget;
 
 
   std::vector<std::vector<bool>> mBitset;
@@ -65,5 +68,4 @@ class World {
 
  private:
   void createEntity();
-
 };

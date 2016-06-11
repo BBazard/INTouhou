@@ -29,9 +29,11 @@ void World::createBomb() {
 
 void World::run() {
   createPlayer();
+  createBullet();
 
   while (mWindow.isOpen()) {
     mKeyController.run(*this);
+    mBulletMove.run(*this);
     mPlayerMove.run(*this);
     mDisplay.run(*this);
   }
@@ -49,12 +51,15 @@ void World::createPlayer() {
   // mBitset[SHOOT].back() = true;
   mBitset[SPRITE].back() = true;
   // mBitset[TARGET].back() = true;
-  Sprite playerSprite("../sprite/vaisseau.png");
-  mSprite.push_back(playerSprite);
+
+  mEvent.push_back(Event());
+  mLife.push_back(Life(5));
   // @todo change 200 with display
   mPosition.push_back(Position(WINDOW_WIDTH / 2 - 40, 5 * WINDOW_HEIGHT / 6));
-  mLife.push_back(Life(5));
-  mEvent.push_back(Event());
+  Sprite playerSprite("../sprite/vaisseau.png");
+  mSprite.push_back(playerSprite);
+  TargetType target = NOTARGET;
+  mTarget.push_back(target);
 }
 
 void World::createEnemy() {
@@ -75,14 +80,23 @@ void World::createBullet() {
   createEntity();
 
   // mBitset[ANIMATION].back() = true;
-  // mBitset[DYNAMICS].back() = true;
+  mBitset[DYNAMICS].back() = true;
   // mBitset[EVENT].back() = true;
-  // mBitset[HITBOX].back() = true;
+  mBitset[HITBOX].back() = true;
   // mBitset[LIFE].back() = true;
   mBitset[POSITION].back() = true;
   // mBitset[SHOOT].back() = true;
   mBitset[SPRITE].back() = true;
-  // mBitset[TARGET].back() = true;
+  mBitset[TARGET].back() = true;
+
+  mEvent.push_back(Event());
+  mLife.push_back(Life(5));
+  // @todo change position relative to player
+  mPosition.push_back(Position(WINDOW_WIDTH / 2 - 40, 5 * WINDOW_HEIGHT / 6));
+  Sprite playerSprite("../sprite/bulletPlayer.png");
+  mSprite.push_back(playerSprite);
+  TargetType target = ENEMY;
+  mTarget.push_back(target);
 }
 
 void World::createEntity() {
@@ -96,7 +110,7 @@ std::vector<bool>& World::getBitset(ComponentType type) {
 }
 
 std::vector<Sprite>& World::getSprites() {
-   return mSprite;
+  return mSprite;
 }
 
 std::vector<Position>& World::getPositions() {
