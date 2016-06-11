@@ -5,33 +5,36 @@ PlayerMove::PlayerMove() {
 }
 
 void PlayerMove::run(World &world) {
+  int speed = 5;
   for (size_t i = 0; i < world.getBitset(EVENT).size(); ++i) {
-    int LIMIT_WIDTH = WINDOW_WIDTH - world.getSprite(i).getSizeX();
-    int LIMIT_HEIGHT = WINDOW_HEIGHT - world.getSprite(i).getSizeY();
     if (world.getBitset(EVENT)[i]) {
-      if (world.getEvent(i).getMove()[LEFT] == true) {
-        if (world.getPosition(i).x() - 5 < 0)
-         world.getPosition(i).setX(0);
+      auto LIMIT_WIDTH = WINDOW_WIDTH - world.getSprite(i).getSizeX();
+      auto LIMIT_HEIGHT = WINDOW_HEIGHT - world.getSprite(i).getSizeY();
+      auto move = world.getEvent(i).getMove();
+      auto &pos = world.getPosition(i);
+      if (move[LEFT]) {
+        if (pos.x() - speed < 0)
+         pos.setX(0);
         else
-          world.getPosition(i).move(-5, 0);
+          pos.move(-speed, 0);
       }
-      if (world.getEvent(i).getMove()[RIGHT] == true) {
-        if (world.getPosition(i).x() + 5 > LIMIT_WIDTH)
-          world.getPosition(i).setX(LIMIT_WIDTH);
+      if (move[RIGHT]) {
+        if (pos.x() + speed > LIMIT_WIDTH)
+          pos.setX(LIMIT_WIDTH);
         else
-          world.getPosition(i).move(5, 0);
+          pos.move(speed, 0);
       }
-      if (world.getEvent(i).getMove()[UP] == true) {
-        if (world.getPosition(i).y() - 5 < 0)
-          world.getPosition(i).setY(0);
+      if (move[UP]) {
+        if (pos.y() - speed < 0)
+          pos.setY(0);
         else
-          world.getPosition(i).move(0, -5);
+          pos.move(0, -speed);
       }
-      if (world.getEvent(i).getMove()[DOWN] == true) {
-        if (world.getPosition(i).y() + 5 > LIMIT_HEIGHT)
-          world.getPosition(i).setY(LIMIT_HEIGHT);
+      if (move[DOWN]) {
+        if (pos.y() + speed > LIMIT_HEIGHT)
+          pos.setY(LIMIT_HEIGHT);
         else
-          world.getPosition(i).move(0, 5);
+          pos.move(0, speed);
       }
     }
   }
