@@ -62,8 +62,8 @@ class World {
   void run();
 
   std::vector<bool>& getBitset(ComponentType type);
-  std::vector<Sprite>& getSprites();
-  std::vector<Position>& getPositions();
+  Sprite& getSprites(int ind);
+  Position& getPositions(int ind);
   Event& getEvent(int ind);
 
  private:

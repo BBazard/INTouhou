@@ -38,9 +38,9 @@ void Display::run(World &world) {
   mWindow.draw(mSpriteBackground.getSprite(0.0, 0.0));
   for (size_t i = 0; i < world.getBitset(SPRITE).size(); ++i) {
     if (world.getBitset(SPRITE)[i]) {
-      float X = world.getPositions()[i].x();
-      float Y = world.getPositions()[i].y();
-      mWindow.draw(world.getSprites()[i].getSprite(X, Y));
+      float X = world.getPositions(i).x();
+      float Y = world.getPositions(i).y();
+      mWindow.draw(world.getSprites(i).getSprite(X, Y));
     }
   }
   mWindow.display();

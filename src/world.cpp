@@ -109,12 +109,12 @@ std::vector<bool>& World::getBitset(ComponentType type) {
   return mBitset[type];
 }
 
-std::vector<Sprite>& World::getSprites() {
-  return mSprite;
+Sprite& World::getSprites(int ind) {
+  return mSprite[ind];
 }
 
-std::vector<Position>& World::getPositions() {
-  return mPosition;
+Position& World::getPositions(int ind) {
+  return mPosition[ind];
 }
 
 Event& World::getEvent(int ind) {
