@@ -4,7 +4,7 @@ CXXFLAGS+=-Wall -Wextra -Wpedantic -std=c++14
 LDLIBS+=-lsfml-graphics -lsfml-window -lsfml-system
 
 LINT:=cpplint
-LINTFLAGS+=--extensions=hpp,cpp --filter=-legal/copyright,-runtime/int,-runtime/explicit
+LINTFLAGS+=--extensions=hpp,cpp --filter=-legal/copyright,-runtime/int,-runtime/explicit,-runtime/references
 
 
 BINDIR:=$(CURDIR)/bin
