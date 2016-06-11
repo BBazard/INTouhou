@@ -9,5 +9,5 @@ class Dynamics {
 
  public:
   Dynamics();
-  Position move(int x, int y);
+  void move(Position& pos);
 };

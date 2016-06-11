@@ -4,7 +4,7 @@
 Dynamics::Dynamics() : mSpeed(10) {
 }
 
-Position Dynamics::move(int x, int y) {
-  return Position(x, y-mSpeed);
+void Dynamics::move(Position& pos) {
+  pos.move(0, -mSpeed);
 }
 

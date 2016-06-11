@@ -12,6 +12,7 @@
 #include "keycontroller.hpp"
 #include "bulletmove.hpp"
 #include "target.hpp"
+#include "dynamics.hpp"
 
 typedef enum {
   ANIMATION,
@@ -41,7 +42,7 @@ class World {
   BulletMove mBulletMove;
 
   //std::vector<Animation> mAnimation;
-  //std::vector<Dynamics> mDynamics;
+  std::vector<Dynamics> mDynamics;
   std::vector<Event> mEvent;
   //std::vector<Hitbox> mHitbox;
   std::vector<Life> mLife;
@@ -65,6 +66,7 @@ class World {
   Sprite& getSprites(int ind);
   Position& getPositions(int ind);
   Event& getEvent(int ind);
+  Dynamics& getDynamics(int ind);
 
  private:
   void createEntity();

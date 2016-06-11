@@ -52,6 +52,7 @@ void World::createPlayer() {
   mBitset[SPRITE].back() = true;
   // mBitset[TARGET].back() = true;
 
+  mDynamics.push_back(Dynamics());
   mEvent.push_back(Event());
   mLife.push_back(Life(5));
   // @todo change 200 with display
@@ -89,6 +90,7 @@ void World::createBullet() {
   mBitset[SPRITE].back() = true;
   mBitset[TARGET].back() = true;
 
+  mDynamics.push_back(Dynamics());
   mEvent.push_back(Event());
   mLife.push_back(Life(5));
   // @todo change position relative to player
@@ -120,3 +122,8 @@ Position& World::getPositions(int ind) {
 Event& World::getEvent(int ind) {
   return mEvent[ind];
 }
+
+Dynamics& World::getDynamics(int ind) {
+  return mDynamics[ind];
+}
+
