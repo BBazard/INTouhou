@@ -4,7 +4,7 @@
 
 class Dynamics {
  private:
-  int mSpeed;
+  float mSpeed;
   // int mAccel;
 
  public:

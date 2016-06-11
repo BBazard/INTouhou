@@ -2,24 +2,24 @@
 
 Position::Position() {}
 
-Position::Position(int x, int y) : mX(x), mY(y) {}
+Position::Position(float x, float y) : mX(x), mY(y) {}
 
-int Position::x() { return mX; }
+float Position::x() { return mX; }
 
-int Position::y() { return mY; }
+float Position::y() { return mY; }
 
 /**
  * @brief Relative move
  */
-void Position::move(int x, int y) {
+void Position::move(float x, float y) {
   mX += x;
   mY += y;
 }
 
-void Position::setX(int x) {
+void Position::setX(float x) {
   mX = x;
 }
 
-void Position::setY(int y) {
+void Position::setY(float y) {
   mY = y;
 }
