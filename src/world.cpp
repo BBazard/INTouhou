@@ -34,8 +34,11 @@ void World::run() {
   Position m(X,Y);
   createBullet(m);
 
+  mClock.restart();
+
   while (mWindow.isOpen()) {
     mKeyController.run(*this);
+    mCreatePlayerBullet.run(*this);
     mBulletMove.run(*this);
     mPlayerMove.run(*this);
     mDisplay.run(*this);
@@ -131,5 +134,10 @@ Event& World::getEvent(int ind) {
 
 Dynamics& World::getDynamic(int ind) {
   return mDynamics[ind];
+}
+
+// what happens after 600 hours of play ?
+int World::getTime() {
+  return mClock.getElapsedTime().asMilliseconds();
 }
 

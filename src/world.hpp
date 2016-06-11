@@ -13,6 +13,7 @@
 #include "bulletmove.hpp"
 #include "target.hpp"
 #include "dynamics.hpp"
+#include "createPlayerBullet.hpp"
 
 typedef enum {
   ANIMATION,
@@ -40,6 +41,7 @@ class World {
   PlayerMove mPlayerMove;
   KeyController mKeyController;
   BulletMove mBulletMove;
+  CreatePlayerBullet mCreatePlayerBullet;
 
   //std::vector<Animation> mAnimation;
   std::vector<Dynamics> mDynamics;
@@ -51,8 +53,9 @@ class World {
   std::vector<Sprite> mSprite;
   std::vector<Target> mTarget;
 
-
   std::vector<std::vector<bool>> mBitset;
+
+  sf::Clock mClock;
 
  public:
   World();
@@ -67,6 +70,7 @@ class World {
   Position& getPosition(int ind);
   Event& getEvent(int ind);
   Dynamics& getDynamic(int ind);
+  int getTime();
 
  private:
   void createEntity();
