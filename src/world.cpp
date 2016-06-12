@@ -29,9 +29,10 @@ void World::createBomb() {
 
 void World::run() {
   createPlayer();
-  int X = World::getPosition(0).x() + World::getSprite(0).getSizeX()/2;
-  int Y = World::getPosition(0).y() + World::getSprite(0).getSizeY()/2;
-  Position m(X,Y);
+  createEnemy();
+  int X = World::getPosition(0).x() + World::getSprite(0).getSizeX() / 2;
+  int Y = World::getPosition(0).y() + World::getSprite(0).getSizeY() / 2;
+  Position m(X, Y);
   createBullet(m);
 
   mClock.restart();
@@ -40,6 +41,7 @@ void World::run() {
     mKeyController.run(*this);
     mCreatePlayerBullet.run(*this);
     mBulletMove.run(*this);
+    mEnemyMove.run(*this);
     mPlayerMove.run(*this);
     mDisplay.run(*this);
   }
@@ -78,9 +80,18 @@ void World::createEnemy() {
   // mBitset[HITBOX].back() = true;
   mBitset[LIFE].back() = true;
   mBitset[POSITION].back() = true;
-  // mBitset[SHOOT].back() = true;
+  mBitset[SHOOT].back() = true;
   mBitset[SPRITE].back() = true;
   // mBitset[TARGET].back() = true;
+
+  mDynamics.push_back(Dynamics());
+  mEvent.push_back(Event());
+  mLife.push_back(Life(20));
+  mPosition.push_back(Position(0, 0));
+  Sprite enemySprite("../sprite/vaisseau.png");
+  mSprite.push_back(enemySprite);
+  TargetType target = NOTARGET;
+  mTarget.push_back(target);
 }
 
 // the position pos is the center of the bullet

@@ -14,6 +14,7 @@
 #include "target.hpp"
 #include "dynamics.hpp"
 #include "createPlayerBullet.hpp"
+#include "enemymove.hpp"
 
 typedef enum {
   ANIMATION,
@@ -42,14 +43,15 @@ class World {
   KeyController mKeyController;
   BulletMove mBulletMove;
   CreatePlayerBullet mCreatePlayerBullet;
+  EnemyMove mEnemyMove;
 
-  //std::vector<Animation> mAnimation;
+  // std::vector<Animation> mAnimation;
   std::vector<Dynamics> mDynamics;
   std::vector<Event> mEvent;
-  //std::vector<Hitbox> mHitbox;
+  // std::vector<Hitbox> mHitbox;
   std::vector<Life> mLife;
   std::vector<Position> mPosition;
-  //std::vector<Shoot> mShoot;
+  // std::vector<Shoot> mShoot;
   std::vector<Sprite> mSprite;
   std::vector<Target> mTarget;
 
