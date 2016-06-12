@@ -10,4 +10,5 @@ class Life {
   void increaseLife();
   void decreaseLife();
   int getLife();
+  void setLife(int l);
 };

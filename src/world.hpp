@@ -79,6 +79,5 @@ class World {
   void removeEntity(int ind);
 
  private:
-  void createEntity();
   int getNextUnusedIndex();
 };

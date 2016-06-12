@@ -10,5 +10,6 @@ class Target {
  public:
   Target(TargetType &tt);
   TargetType getTarget();
+  void setTarget(TargetType& tt);
 };
 

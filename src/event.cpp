@@ -18,3 +18,8 @@ void Event::popDirection(Direction dir) {
 std::vector<bool> Event::getMove() {
   return mMove;
 }
+
+void Event::EmptyDirection() {
+  for (size_t i = 0; i < mMove.size(); ++i)
+    mMove[i] = false;
+}

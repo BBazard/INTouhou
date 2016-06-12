@@ -9,24 +9,22 @@ World::World() :
   mKeyController(mWindow) {
   mWindow.setKeyRepeatEnabled(false);
   mWindow.setFramerateLimit(60);
-  // // entity number 0 is empty
+  // entity number 0 is player
   for (int i = 0; i < COMPONENTNUMBER; ++i)
     mBitset.push_back(std::vector<bool>());
 }
 
 void World::createBomb() {
-  createEntity();
+  int i = getNextUnusedIndex();
+  mEntityType[i] = BOMB;
 
-  // mBitset[ANIMATION].back() = true;
-  // mBitset[DYNAMICS].back() = true;
-  // mBitset[EVENT].back() = true;
-  // mBitset[HITBOX].back() = true;
-  // mBitset[LIFE].back() = true;
-  mBitset[POSITION].back() = true;
-  // mBitset[SHOOT].back() = true;
-  mBitset[SPRITE].back() = true;
-  // mBitset[TARGET].back() = true;
-  mEntityType.push_back(BOMB);
+  mBitset[POSITION][i] = true;
+  mBitset[SPRITE][i] = true;
+
+  mPosition[i].setX(0);
+  mPosition[i].setY(0);
+
+  mSprite[i].set("../sprite/vaisseau.png");
 }
 
 void World::run() {
@@ -50,85 +48,63 @@ void World::run() {
 }
 
 void World::createPlayer() {
-  createEntity();
+  int i = getNextUnusedIndex();
 
-  // mBitset[ANIMATION].back() = true;
-  // mBitset[DYNAMICS].back() = true;
-  mBitset[EVENT].back() = true;
-  // mBitset[HITBOX].back() = true;
-  mBitset[LIFE].back() = true;
-  mBitset[POSITION].back() = true;
-  // mBitset[SHOOT].back() = true;
-  mBitset[SPRITE].back() = true;
-  // mBitset[TARGET].back() = true;
+  mBitset[EVENT][i] = true;
+  mBitset[LIFE][i] = true;
+  mBitset[POSITION][i] = true;
+  mBitset[SPRITE][i] = true;
 
-  mDynamics.push_back(Dynamics());
-  mEvent.push_back(Event());
-  mLife.push_back(Life(5));
+  mEvent[i].EmptyDirection();
+  mLife[i].setLife(5);
   // @todo change 200 with display
-  mPosition.push_back(Position(WINDOW_WIDTH/2 - 40, 5*WINDOW_HEIGHT/6));
-  Sprite playerSprite("../sprite/vaisseau.png");
-  mSprite.push_back(playerSprite);
-  TargetType target = NOTARGET;
-  mTarget.push_back(target);
-  mEntityType.push_back(PLAYERSHIP);
+  mPosition[i].setX(WINDOW_WIDTH/2 - 40);
+  mPosition[i].setY(5*WINDOW_HEIGHT/6);
+  mSprite[i].set("../sprite/vaisseau.png");
+  TargetType tt = NOTARGET;
+  mTarget[i].setTarget(tt);
+  mEntityType[i] = PLAYERSHIP;
 }
 
 void World::createEnemy() {
-  createEntity();
+  int i = getNextUnusedIndex();
 
-  // mBitset[ANIMATION].back() = true;
-  // mBitset[DYNAMICS].back() = true;
-  // mBitset[EVENT].back() = true;
-  // mBitset[HITBOX].back() = true;
-  mBitset[LIFE].back() = true;
-  mBitset[POSITION].back() = true;
-  mBitset[SHOOT].back() = true;
-  mBitset[SPRITE].back() = true;
-  // mBitset[TARGET].back() = true;
+  mBitset[LIFE][i] = true;
+  mBitset[POSITION][i] = true;
+  mBitset[SHOOT][i] = true;
+  mBitset[SPRITE][i] = true;
 
-  mDynamics.push_back(Dynamics());
-  mEvent.push_back(Event());
-  mLife.push_back(Life(20));
-  mPosition.push_back(Position(0, 0));
-  Sprite enemySprite("../sprite/enemyShip.png");
-  mSprite.push_back(enemySprite);
-  TargetType target = NOTARGET;
-  mTarget.push_back(target);
-  mEntityType.push_back(ENEMYSHIP);
+  mEvent[i].EmptyDirection();
+  mLife[i].setLife(20);
+  mPosition[i].setX(0);
+  mPosition[i].setY(0);
+  mSprite[i].set("../sprite/enemyShip.png");
+  TargetType tt = NOTARGET;
+  mTarget[i].setTarget(tt);
+  mEntityType[i] = ENEMYSHIP;
 }
 
 // the position pos is the center of the bullet
 void World::createBullet(Position& pos) {
-  createEntity();
+  int i = getNextUnusedIndex();
 
-  // mBitset[ANIMATION].back() = true;
-  mBitset[DYNAMICS].back() = true;
-  // mBitset[EVENT].back() = true;
-  mBitset[HITBOX].back() = true;
-  // mBitset[LIFE].back() = true;
-  mBitset[POSITION].back() = true;
-  // mBitset[SHOOT].back() = true;
-  mBitset[SPRITE].back() = true;
-  mBitset[TARGET].back() = true;
+  mBitset[DYNAMICS][i] = true;
+  mBitset[HITBOX][i] = true;
+  mBitset[POSITION][i] = true;
+  mBitset[SPRITE][i] = true;
+  mBitset[TARGET][i] = true;
 
-  mDynamics.push_back(Dynamics());
-  mEvent.push_back(Event());
-  mLife.push_back(Life(5));
-  // @todo change position relative to player
-  Sprite bulletSprite("../sprite/bulletPlayer.png");
-  float X = pos.x() - bulletSprite.getSizeX()/2;
-  float Y = pos.y() - bulletSprite.getSizeY()/2;
-  mPosition.push_back(Position(X, Y));
-  mSprite.push_back(bulletSprite);
-  TargetType target = ENEMY;
-  mTarget.push_back(target);
-  mEntityType.push_back(BULLET);
-}
-
-void World::createEntity() {
-  for (int i = 0; i < COMPONENTNUMBER; ++i)
-    mBitset[i].push_back(false);
+  mEvent[i].EmptyDirection();
+  mLife[i].setLife(5);
+  mSprite[i].set("../sprite/bulletPlayer.png");
+  float X = pos.x() - mSprite[i].getSizeX()/2;
+  float Y = pos.y() - mSprite[i].getSizeY()/2;
+  mPosition[i].setX(X);
+  mPosition[i].setY(Y);
+  TargetType tt = ENEMY;
+  mTarget[i].setTarget(tt);
+  mEntityType[i] = BULLET;
+  // mDynamics[i]
 }
 
 std::vector<bool>& World::getBitset(ComponentType type) {
@@ -171,9 +147,11 @@ int World::getNextUnusedIndex() {
   for (int i = 0; i < COMPONENTNUMBER; ++i)
     assert(mEntityType.size() == mBitset[(ComponentType)i].size());
 
-  for (size_t i = 0; i < mEntityType.size(); ++i)
-    if (mEntityType[i] == NOTDEFINED)
-      return i;
+  if (mEntityType.size() != 0) {
+    for (size_t i = 0; i < mEntityType.size(); ++i)
+      if (mEntityType[i] == NOTDEFINED)
+        return i;
+  }
 
   for (int i = 0; i < COMPONENTNUMBER; ++i)
     mBitset[(ComponentType)i].push_back(false);
@@ -182,12 +160,12 @@ int World::getNextUnusedIndex() {
   mEvent.push_back(Event());
   mLife.push_back(Life(1000));
   mPosition.push_back(Position(0, 0));
-  Sprite s("../sprite/vaisseau.png");
-  mSprite.push_back(s);
+  mSprite.push_back(Sprite());
+  mSprite.back().set("../sprite/bulletPlayer.png");
   TargetType target = NOTARGET;
   mTarget.push_back(target);
   mEntityType.push_back(NOTDEFINED);
 
-  return mEntityType.size();
+  return (mEntityType.size() - 1);
 }
 

@@ -16,5 +16,6 @@ class Sprite {
   sf::Sprite& getSprite(float x, float y);
   int getSizeX();
   int getSizeY();
+  void set(const std::string &img);
 };
 

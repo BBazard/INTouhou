@@ -11,5 +11,6 @@ class Event {
   Event();
   void pushDirection(Direction dir);
   void popDirection(Direction dir);
+  void EmptyDirection();
   std::vector<bool> getMove();
 };
