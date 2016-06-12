@@ -3,7 +3,7 @@
 
 class CreatePlayerBullet : public System {
  private:
-   int mLastTime;
+  int mLastTime;
  public:
   CreatePlayerBullet();
   void run(World &world);

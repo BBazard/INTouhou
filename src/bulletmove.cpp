@@ -5,13 +5,13 @@ BulletMove::BulletMove() {
 }
 
 void BulletMove::run(World &world) {
-  for (size_t i = 0; i < world.getBitset(TARGET).size(); ++i) {
+  for (size_t i = 0; i < world.getBitset(SHOOT).size(); ++i) {
     if (world.getBitset(DYNAMICS)[i]) {
-      world.getDynamic(i).move(world.getPosition(i));
+      world.getDynamic(i).moveV(world.getPosition(i));
 
       auto& s = world.getSprite(i);
       auto& pos = world.getPosition(i);
-      
+
       // if bullet outside view
       if ((pos.y() + s.getSizeY() < 0) ||
           (pos.y() > WINDOW_HEIGHT)    ||
