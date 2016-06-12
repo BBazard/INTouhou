@@ -5,7 +5,7 @@ BulletMove::BulletMove() {
 }
 
 void BulletMove::run(World &world) {
-  for (size_t i = 0; i < world.getBitset(SHOOT).size(); ++i) {
+  for (size_t i = 0; i < world.getBitset(TARGET).size(); ++i) {
     if (world.getBitset(DYNAMICS)[i]) {
       world.getDynamic(i).moveV(world.getPosition(i));
 
@@ -19,6 +19,8 @@ void BulletMove::run(World &world) {
           (pos.x() > WINDOW_WIDTH)) {
         for (int j = 0; j < COMPONENTNUMBER; ++j)
           world.getBitset((ComponentType)j)[i] = false;
+
+        world.getEntityType(i) = NOTDEFINE;
       }
     }
   }

@@ -55,6 +55,8 @@ class World {
   std::vector<Sprite> mSprite;
   std::vector<Target> mTarget;
 
+  std::vector<EntityType> mEntityType;  //  Not define in the mBitset vector
+
   std::vector<std::vector<bool>> mBitset;
 
   sf::Clock mClock;
@@ -73,6 +75,7 @@ class World {
   Event& getEvent(int ind);
   Dynamics& getDynamic(int ind);
   int getTime();
+  EntityType& getEntityType(int ind);
 
  private:
   void createEntity();

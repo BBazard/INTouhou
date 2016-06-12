@@ -25,13 +25,14 @@ void World::createBomb() {
   // mBitset[SHOOT].back() = true;
   mBitset[SPRITE].back() = true;
   // mBitset[TARGET].back() = true;
+  mEntityType.push_back(BOMB);
 }
 
 void World::run() {
   createPlayer();
   createEnemy();
-  int X = World::getPosition(0).x() + World::getSprite(0).getSizeX() / 2;
-  int Y = World::getPosition(0).y() + World::getSprite(0).getSizeY() / 2;
+  int X = World::getPosition(0).x() + World::getSprite(0).getSizeX()/2;
+  int Y = World::getPosition(0).y() + World::getSprite(0).getSizeY()/2;
   Position m(X, Y);
   createBullet(m);
 
@@ -64,11 +65,12 @@ void World::createPlayer() {
   mEvent.push_back(Event());
   mLife.push_back(Life(5));
   // @todo change 200 with display
-  mPosition.push_back(Position(WINDOW_WIDTH / 2 - 40, 5 * WINDOW_HEIGHT / 6));
+  mPosition.push_back(Position(WINDOW_WIDTH/2 - 40, 5*WINDOW_HEIGHT/6));
   Sprite playerSprite("../sprite/vaisseau.png");
   mSprite.push_back(playerSprite);
   TargetType target = NOTARGET;
   mTarget.push_back(target);
+  mEntityType.push_back(PLAYERSHIP);
 }
 
 void World::createEnemy() {
@@ -92,6 +94,7 @@ void World::createEnemy() {
   mSprite.push_back(enemySprite);
   TargetType target = NOTARGET;
   mTarget.push_back(target);
+  mEntityType.push_back(ENEMYSHIP);
 }
 
 // the position pos is the center of the bullet
@@ -119,6 +122,7 @@ void World::createBullet(Position& pos) {
   mSprite.push_back(bulletSprite);
   TargetType target = ENEMY;
   mTarget.push_back(target);
+  mEntityType.push_back(BULLET);
 }
 
 void World::createEntity() {
@@ -152,3 +156,6 @@ int World::getTime() {
   return mClock.getElapsedTime().asMilliseconds();
 }
 
+EntityType& World::getEntityType(int ind) {
+  return mEntityType[ind];
+}

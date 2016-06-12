@@ -14,6 +14,14 @@ typedef enum {
   NOTARGET,
 } TargetType;
 
+typedef enum {
+  PLAYERSHIP,
+  ENEMYSHIP,
+  BULLET,
+  BOMB,
+  NOTDEFINE,
+} EntityType;
+
 class Component {
  public:
  private:
