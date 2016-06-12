@@ -6,9 +6,9 @@ EnemyMove::EnemyMove() {
 }
 
 void EnemyMove::run(World &world) {
-  static bool right = right;
-  for (size_t i = 0; i < world.getBitset(SHOOT).size(); ++i) {
-    if (world.getBitset(SHOOT)[i]) {
+  static bool right = true;
+  for (size_t i = 0; i < world.getBitset(DYNAMICS).size(); ++i) {
+    if (world.getEntityType(i) == ENEMY) {
       world.getDynamic(i).moveH(world.getPosition(i), right);
 
       auto& s = world.getSprite(i);

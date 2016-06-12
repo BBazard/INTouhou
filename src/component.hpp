@@ -1,6 +1,19 @@
 #pragma once
 
 typedef enum {
+  ANIMATION,
+  DYNAMICS,
+  EVENT,
+  HITBOX,
+  LIFE,
+  POSITION,
+  SHOOT,
+  SPRITE,
+  TARGET,
+  COMPONENTNUMBER,
+} ComponentType;
+
+typedef enum {
   UP,
   DOWN,
   LEFT,

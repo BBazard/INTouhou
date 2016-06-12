@@ -43,6 +43,7 @@ void World::run() {
     mBulletMove.run(*this);
     mEnemyMove.run(*this);
     mPlayerMove.run(*this);
+    mCollide.run(*this);
     mDisplay.run(*this);
   }
 }
@@ -54,6 +55,7 @@ void World::createPlayer() {
   mBitset[LIFE][i] = true;
   mBitset[POSITION][i] = true;
   mBitset[SPRITE][i] = true;
+  mBitset[HITBOX][i] = true;
 
   mEvent[i].EmptyDirection();
   mLife[i].setLife(5);
@@ -64,11 +66,14 @@ void World::createPlayer() {
   TargetType tt = NOTARGET;
   mTarget[i].setTarget(tt);
   mEntityType[i] = PLAYERSHIP;
+  mHitbox[i].setSize(mSprite[i].getSizeX(), mSprite[i].getSizeY());
+  mHitbox[i].setShift(0, 0);
 }
 
 void World::createEnemy() {
   int i = getNextUnusedIndex();
 
+  mBitset[HITBOX][i] = true;
   mBitset[LIFE][i] = true;
   mBitset[POSITION][i] = true;
   mBitset[SHOOT][i] = true;
@@ -82,6 +87,8 @@ void World::createEnemy() {
   TargetType tt = NOTARGET;
   mTarget[i].setTarget(tt);
   mEntityType[i] = ENEMYSHIP;
+  mHitbox[i].setSize(mSprite[i].getSizeX(), mSprite[i].getSizeY());
+  mHitbox[i].setShift(0, 0);
 }
 
 // the position pos is the center of the bullet
@@ -104,6 +111,8 @@ void World::createBullet(Position& pos) {
   TargetType tt = ENEMY;
   mTarget[i].setTarget(tt);
   mEntityType[i] = BULLET;
+  mHitbox[i].setSize(mSprite[i].getSizeX(), mSprite[i].getSizeY());
+  mHitbox[i].setShift(0, 0);
   // mDynamics[i]
 }
 
@@ -156,6 +165,7 @@ int World::getNextUnusedIndex() {
   for (int i = 0; i < COMPONENTNUMBER; ++i)
     mBitset[(ComponentType)i].push_back(false);
 
+  /* These values are fake, they are changed in the entity constructor */
   mDynamics.push_back(Dynamics());
   mEvent.push_back(Event());
   mLife.push_back(Life(1000));
@@ -165,7 +175,19 @@ int World::getNextUnusedIndex() {
   TargetType target = NOTARGET;
   mTarget.push_back(target);
   mEntityType.push_back(NOTDEFINED);
+  mHitbox.push_back(Hitbox());
 
   return (mEntityType.size() - 1);
 }
 
+Target& World::getTarget(int ind) {
+  return mTarget[ind];
+}
+
+Life& World::getLife(int ind) {
+  return mLife[ind];
+}
+
+Hitbox& World::getHitbox(int ind) {
+  return mHitbox[ind];
+}

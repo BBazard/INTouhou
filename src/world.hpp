@@ -15,19 +15,8 @@
 #include "dynamics.hpp"
 #include "createPlayerBullet.hpp"
 #include "enemymove.hpp"
-
-typedef enum {
-  ANIMATION,
-  DYNAMICS,
-  EVENT,
-  HITBOX,
-  LIFE,
-  POSITION,
-  SHOOT,
-  SPRITE,
-  TARGET,
-  COMPONENTNUMBER,
-} ComponentType;
+#include "collide.hpp"
+#include "hitbox.hpp"
 
 /**
  * @brief
@@ -44,11 +33,12 @@ class World {
   BulletMove mBulletMove;
   CreatePlayerBullet mCreatePlayerBullet;
   EnemyMove mEnemyMove;
+  Collide mCollide;
 
   // std::vector<Animation> mAnimation;
   std::vector<Dynamics> mDynamics;
   std::vector<Event> mEvent;
-  // std::vector<Hitbox> mHitbox;
+  std::vector<Hitbox> mHitbox;
   std::vector<Life> mLife;
   std::vector<Position> mPosition;
   // std::vector<Shoot> mShoot;
@@ -77,6 +67,9 @@ class World {
   int getTime();
   EntityType& getEntityType(int ind);
   void removeEntity(int ind);
+  Target& getTarget(int ind);
+  Life& getLife(int ind);
+  Hitbox& getHitbox(int ind);
 
  private:
   int getNextUnusedIndex();

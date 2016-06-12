@@ -18,6 +18,10 @@ void BulletMove::run(World &world) {
           (pos.x() + s.getSizeX() < 0) ||
           (pos.x() > WINDOW_WIDTH)) {
         world.removeEntity(i);
+        for (int j = 0; j < COMPONENTNUMBER; ++j)
+          world.getBitset((ComponentType)j)[i] = false;
+
+        world.getEntityType(i) = NOTDEFINED;
       }
     }
   }
