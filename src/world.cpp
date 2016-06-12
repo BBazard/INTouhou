@@ -88,7 +88,7 @@ void World::createEnemy() {
   mEvent.push_back(Event());
   mLife.push_back(Life(20));
   mPosition.push_back(Position(0, 0));
-  Sprite enemySprite("../sprite/vaisseau.png");
+  Sprite enemySprite("../sprite/enemyShip.png");
   mSprite.push_back(enemySprite);
   TargetType target = NOTARGET;
   mTarget.push_back(target);
