@@ -4,10 +4,12 @@
 
 class Dynamics {
  private:
-  float mSpeed;
+  float mSpeedBulletPlayer;
+  float mSpeedEnemy;
   // int mAccel;
 
  public:
   Dynamics();
-  void move(Position& pos);
+  void moveV(Position& pos);
+  void moveH(Position& pos, bool right);
 };
