@@ -19,7 +19,7 @@ typedef enum {
   ENEMYSHIP,
   BULLET,
   BOMB,
-  NOTDEFINE,
+  NOTDEFINED,
 } EntityType;
 
 class Component {

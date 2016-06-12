@@ -1,6 +1,7 @@
 #include "world.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <cassert>
 
 World::World() :
   mWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "INTouhou"),
@@ -130,7 +131,6 @@ void World::createEntity() {
     mBitset[i].push_back(false);
 }
 
-
 std::vector<bool>& World::getBitset(ComponentType type) {
   return mBitset[type];
 }
@@ -159,3 +159,35 @@ int World::getTime() {
 EntityType& World::getEntityType(int ind) {
   return mEntityType[ind];
 }
+
+void World::removeEntity(int ind) {
+  for (int i = 0; i < COMPONENTNUMBER; ++i)
+    getBitset((ComponentType)i)[ind] = false;
+
+  getEntityType(ind) = NOTDEFINED;
+}
+
+int World::getNextUnusedIndex() {
+  for (int i = 0; i < COMPONENTNUMBER; ++i)
+    assert(mEntityType.size() == mBitset[(ComponentType)i].size());
+
+  for (size_t i = 0; i < mEntityType.size(); ++i)
+    if (mEntityType[i] == NOTDEFINED)
+      return i;
+
+  for (int i = 0; i < COMPONENTNUMBER; ++i)
+    mBitset[(ComponentType)i].push_back(false);
+
+  mDynamics.push_back(Dynamics());
+  mEvent.push_back(Event());
+  mLife.push_back(Life(1000));
+  mPosition.push_back(Position(0, 0));
+  Sprite s("../sprite/vaisseau.png");
+  mSprite.push_back(s);
+  TargetType target = NOTARGET;
+  mTarget.push_back(target);
+  mEntityType.push_back(NOTDEFINED);
+
+  return mEntityType.size();
+}
+

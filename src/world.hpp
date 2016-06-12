@@ -55,7 +55,7 @@ class World {
   std::vector<Sprite> mSprite;
   std::vector<Target> mTarget;
 
-  std::vector<EntityType> mEntityType;  //  Not define in the mBitset vector
+  std::vector<EntityType> mEntityType;  //  Not defined in the mBitset vector
 
   std::vector<std::vector<bool>> mBitset;
 
@@ -76,7 +76,9 @@ class World {
   Dynamics& getDynamic(int ind);
   int getTime();
   EntityType& getEntityType(int ind);
+  void removeEntity(int ind);
 
  private:
   void createEntity();
+  int getNextUnusedIndex();
 };
