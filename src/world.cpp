@@ -88,7 +88,7 @@ void World::createEnemy() {
   mTarget[i].setTarget(tt);
   mEntityType[i] = ENEMYSHIP;
   mHitbox[i].setSize(mSprite[i].getSizeX(), mSprite[i].getSizeY());
-  mHitbox[i].setShift(0, 0);
+  mHitbox[i].setShift(50, 50);
 }
 
 // the position pos is the center of the bullet

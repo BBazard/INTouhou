@@ -5,7 +5,6 @@
 
 class Hitbox {
  private:
-//  sf::FloatRect mHitbox;
   sf::RectangleShape mHitbox;
   int mX;
   int mY;
@@ -14,6 +13,9 @@ class Hitbox {
   void setSize(int w, int h);
   void setPosition(Position pos);
   void setShift(int x, int y);
-//  sf::FloatRect& getHitbox();
+  int x();
+  int y();
+  int w();
+  int h();
   sf::RectangleShape& getHitbox();
 };

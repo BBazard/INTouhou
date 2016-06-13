@@ -14,11 +14,15 @@ void Collide::run(World &world) {
             auto posBullet = world.getPosition(i);
             auto posShip = world.getPosition(j);
 
-//            world.getHitbox(i).setPosition(posBullet);
-//            world.getHitbox(j).setPosition(posShip);
+            auto hBullet = world.getHitbox(i);
+            auto hEnemy = world.getHitbox(j);
+            hBullet.setPosition(posBullet);
+            hEnemy.setPosition(posShip);
 
-            if (posBullet.y() > posShip.y() &&
-                posBullet.y() < posShip.y() + world.getSprite(j).getSizeY()) {
+            sf::FloatRect r1(hEnemy.x(), hEnemy.y(), hEnemy.w(), hEnemy.h());
+            sf::FloatRect r2(hBullet.x(), hBullet.y(), hBullet.w(), hBullet.h());
+
+            if (r1.intersects(r2)) {
               world.removeEntity(i);
               world.getLife(j).decreaseLife();
               if (world.getLife(j).getLife() < 1)
