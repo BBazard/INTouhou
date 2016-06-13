@@ -1,6 +1,5 @@
 #include "world.hpp"
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include <vector>
 #include <string>
 #include <cassert>
@@ -14,10 +13,6 @@ World::World() :
   // entity number 0 is player
   for (int i = 0; i < COMPONENTNUMBER; ++i)
     mBitset.push_back(std::vector<bool>());
-
-  mMusic.openFromFile("../sounds/background.wav");
-  mMusic.setVolume(50);
-  mMusic.setLoop(true);
 }
 
 void World::createBomb() {
@@ -37,7 +32,6 @@ void World::run() {
   createPlayer();
   createEnemy();
 
-  mMusic.play();
   mClock.restart();
 
   while (mWindow.isOpen()) {
