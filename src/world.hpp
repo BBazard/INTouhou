@@ -15,6 +15,7 @@
 #include "target.hpp"
 #include "dynamics.hpp"
 #include "createPlayerBullet.hpp"
+#include "createenemybullet.hpp"
 #include "enemymove.hpp"
 #include "collide.hpp"
 #include "hitbox.hpp"
@@ -33,6 +34,7 @@ class World {
   KeyController mKeyController;
   BulletMove mBulletMove;
   CreatePlayerBullet mCreatePlayerBullet;
+  CreateEnemyBullet mCreateEnemyBullet;
   EnemyMove mEnemyMove;
   Collide mCollide;
 
@@ -56,7 +58,7 @@ class World {
  public:
   World();
   void createBomb();
-  void createBullet(Position &pos);
+  void createBullet(Position &pos, std::__cxx11::string spritePath, TargetType type);
   void createEnemy();
   void createPlayer();
   void run();

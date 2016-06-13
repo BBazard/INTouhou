@@ -7,7 +7,10 @@ BulletMove::BulletMove() {
 void BulletMove::run(World &world) {
   for (size_t i = 0; i < world.getBitset(TARGET).size(); ++i) {
     if (world.getBitset(DYNAMICS)[i]) {
-      world.getDynamic(i).moveV(world.getPosition(i));
+      if (world.getTarget(i).getTarget() == ENEMY)
+        world.getDynamic(i).moveV(world.getPosition(i));
+      else
+        world.getDynamic(i).moveV2(world.getPosition(i));
 
       auto& s = world.getSprite(i);
       auto& pos = world.getPosition(i);

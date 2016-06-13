@@ -12,4 +12,5 @@ class Dynamics {
   Dynamics();
   void moveV(Position& pos);
   void moveH(Position& pos, bool right);
+  void moveV2(Position& pos);
 };

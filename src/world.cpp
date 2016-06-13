@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <vector>
+#include <string>
 #include <cassert>
 
 World::World() :
@@ -35,9 +36,6 @@ void World::createBomb() {
 void World::run() {
   createPlayer();
   createEnemy();
-  int X = World::getPosition(0).x() + World::getSprite(0).getSizeX()/2;
-  int Y = World::getPosition(0).y() + World::getSprite(0).getSizeY()/2;
-  Position m(X, Y);
 
   mMusic.play();
   mClock.restart();
@@ -45,6 +43,7 @@ void World::run() {
   while (mWindow.isOpen()) {
     mKeyController.run(*this);
     mCreatePlayerBullet.run(*this);
+    mCreateEnemyBullet.run(*this);
     mBulletMove.run(*this);
     mEnemyMove.run(*this);
     mPlayerMove.run(*this);
@@ -97,7 +96,8 @@ void World::createEnemy() {
 }
 
 // the position pos is the center of the bullet
-void World::createBullet(Position& pos) {
+void World::createBullet(Position& pos, std::string spritePath,
+                         TargetType type) {
   int i = getNextUnusedIndex();
 
   mBitset[DYNAMICS][i] = true;
@@ -108,12 +108,12 @@ void World::createBullet(Position& pos) {
 
   mEvent[i].EmptyDirection();
   mLife[i].setLife(5);
-  mSprite[i].set("../sprite/bulletPlayer.png");
+  mSprite[i].set(spritePath);
   float X = pos.x() - mSprite[i].getSizeX()/2;
   float Y = pos.y() - mSprite[i].getSizeY()/2;
   mPosition[i].setX(X);
   mPosition[i].setY(Y);
-  TargetType tt = ENEMY;
+  TargetType tt = type;
   mTarget[i].setTarget(tt);
   mEntityType[i] = BULLET;
   mHitbox[i].setSize(mSprite[i].getSizeX(), mSprite[i].getSizeY());
