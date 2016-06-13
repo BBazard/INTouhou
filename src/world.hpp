@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 #include "component.hpp"
 #include "system.hpp"
@@ -50,6 +51,7 @@ class World {
   std::vector<std::vector<bool>> mBitset;
 
   sf::Clock mClock;
+  sf::Music mMusic;
 
  public:
   World();

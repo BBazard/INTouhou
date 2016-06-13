@@ -1,7 +1,7 @@
 CXX:=clang++
 LDXX:=$(CXX)
 CXXFLAGS+=-Wall -Wextra -Wpedantic -std=c++14
-LDLIBS+=-lsfml-graphics -lsfml-window -lsfml-system
+LDLIBS+=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 LINT:=cpplint
 LINTFLAGS+=--extensions=hpp,cpp --filter=-legal/copyright,-runtime/int,-runtime/explicit,-runtime/references
