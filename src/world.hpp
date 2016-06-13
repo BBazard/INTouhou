@@ -58,7 +58,7 @@ class World {
  public:
   World();
   void createBomb();
-  void createBullet(Position &pos, std::__cxx11::string spritePath, TargetType type);
+  void createBullet(Position &pos, std::__cxx11::string spritePath, TargetType type, int shiftX, int shiftY);
   void createEnemy();
   void createPlayer();
   void run();

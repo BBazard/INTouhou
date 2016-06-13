@@ -11,7 +11,7 @@ void CreatePlayerBullet::run(World &world) {
     int X = world.getPosition(0).x() + world.getSprite(0).getSizeX()/2;
     int Y = world.getPosition(0).y() + world.getSprite(0).getSizeY()/2;
     Position m(X, Y);
-    world.createBullet(m, "../sprite/bulletPlayer.png", ENEMY);
+    world.createBullet(m, "../sprite/bulletPlayer.png", ENEMY, 0, 0);
   }
 }
 

@@ -1,7 +1,7 @@
 #include "createenemybullet.hpp"
 #include "world.hpp"
 
-CreateEnemyBullet::CreateEnemyBullet() {
+CreateEnemyBullet::CreateEnemyBullet() : mLastTime(0) {
 }
 
 void CreateEnemyBullet::run(World &world) {
@@ -13,7 +13,7 @@ void CreateEnemyBullet::run(World &world) {
         int x = world.getPosition(i).x() + world.getSprite(i).getSizeX()/2;
         int y = world.getPosition(i).y() + world.getSprite(i).getSizeY();
         Position b(x, y);
-        world.createBullet(b, "../sprite/bulletEnemy.png", PLAYER);
+        world.createBullet(b, "../sprite/bulletEnemy.png", PLAYER, 100, 100);
       }
     }
   }

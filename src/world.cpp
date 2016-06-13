@@ -71,7 +71,7 @@ void World::createPlayer() {
   mTarget[i].setTarget(tt);
   mEntityType[i] = PLAYERSHIP;
   mHitbox[i].setSize(mSprite[i].getSizeX(), mSprite[i].getSizeY());
-  mHitbox[i].setShift(0, 0);
+  mHitbox[i].setShift(50, 50);
 }
 
 void World::createEnemy() {
@@ -97,7 +97,7 @@ void World::createEnemy() {
 
 // the position pos is the center of the bullet
 void World::createBullet(Position& pos, std::string spritePath,
-                         TargetType type) {
+                         TargetType type, int shiftX, int shiftY) {
   int i = getNextUnusedIndex();
 
   mBitset[DYNAMICS][i] = true;
@@ -117,7 +117,7 @@ void World::createBullet(Position& pos, std::string spritePath,
   mTarget[i].setTarget(tt);
   mEntityType[i] = BULLET;
   mHitbox[i].setSize(mSprite[i].getSizeX(), mSprite[i].getSizeY());
-  mHitbox[i].setShift(0, 0);
+  mHitbox[i].setShift(shiftX, shiftY);
   // mDynamics[i]
 }
 
