@@ -1,7 +1,13 @@
 #include "dynamics.hpp"
 #include "position.hpp"
+#include "lagrange.hpp"
+#include <vector>
 
 Dynamics::Dynamics() : mSpeedBulletPlayer(10), mSpeedEnemy(1) {
+}
+
+void Dynamics::genPol(std::vector<float> x, std::vector<float> y) {
+  mLagrange.genPol(x, y);
 }
 
 void Dynamics::moveV(Position& pos) {
@@ -13,7 +19,9 @@ void Dynamics::moveV(Position& pos) {
  * @todo change this fonction to make good bullet pattern
  */
 void Dynamics::moveV2(Position& pos) {
-  pos.move(0, mSpeedBulletPlayer);
+  pos.move(0, mSpeedEnemy*3);
+  // evaluate is reversed ?
+  pos.setX(mLagrange.evaluate(pos.y()));
 }
 
 

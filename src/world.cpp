@@ -117,7 +117,25 @@ void World::createBullet(Position& pos, std::string spritePath,
   mEntityType[i] = BULLET;
   mHitbox[i].setSize(mSprite[i].getSizeX(), mSprite[i].getSizeY());
   mHitbox[i].setShift(shiftX, shiftY);
-  // mDynamics[i]
+  //// PATTERN 1
+  //if (X < WINDOW_WIDTH/2) {
+  //  std::vector<float> x = {X, WINDOW_WIDTH/2, 1};
+  //  std::vector<float> y = {Y, WINDOW_HEIGHT/2, 1};
+  //  mDynamics[i].genPol(y, x);
+  //} else {
+  //  std::vector<float> x = {X, WINDOW_WIDTH/2, WINDOW_WIDTH-1};
+  //  std::vector<float> y = {Y, WINDOW_HEIGHT/2, 1};
+  //  mDynamics[i].genPol(y, x);
+  //}
+  //// PATTERN 2
+  //std::vector<float> x = {X, WINDOW_WIDTH/2};
+  //std::vector<float> y = {Y, WINDOW_HEIGHT/2};
+  //mDynamics[i].genPol(y, x);
+  // PATTERN 3
+  std::vector<float> x = {X, mPosition[0].x()};
+  std::vector<float> y = {Y, mPosition[0].y()};
+  mDynamics[i].genPol(y, x);
+
 }
 
 std::vector<bool>& World::getBitset(ComponentType type) {
