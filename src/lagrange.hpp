@@ -8,5 +8,6 @@ class Lagrange {
 
  public:
   void genPol(std::vector<float> x, std::vector<float> y);
+  float evaluate(float x);
 };
 

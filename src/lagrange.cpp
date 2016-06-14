@@ -2,6 +2,26 @@
 #include <vector>
 
 /**
+ * Evaluate the Lagrange polynomial in a point
+ *
+ * return value : y = P(x)
+ *
+ * Lagrange::genPol needs to be called before
+ * this function can have a meaningful return value
+ *
+ */
+float Lagrange::evaluate(float x) {
+  float y = 0;
+  for (size_t i = 0; i < mPol.size(); ++i) {
+    float add = 1;
+    for (size_t j = 0; j < i; ++j)
+      add *= x;
+    y += mPol[i]*add;
+  }
+  return y;
+}
+
+/**
  * Generate a Lagrange polynomial from a set of points
  *
  * It is the only polynomial P that satisfies :
