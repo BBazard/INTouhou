@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <string>
 #include "component.hpp"
 #include "system.hpp"
 #include "life.hpp"
@@ -19,6 +20,14 @@
 #include "collide.hpp"
 #include "hitbox.hpp"
 
+
+typedef enum {
+  PLAYING,
+  LOSE,
+  TRIGGERLOSE,
+  WIN,
+  TRIGGERWIN,
+} GameState;
 /**
  * @brief
  *
@@ -54,11 +63,15 @@ class World {
   sf::Clock mClock;
 
   int mScore;
+  GameState mGameState;
+  bool mRetry = false;
+  bool mEnd = false;
+
 
  public:
   World();
   void createBomb();
-  void createBullet(Position &pos, std::__cxx11::string spritePath, TargetType type, int shiftX, int shiftY);
+  void createBullet(Position &pos, std::string spritePath, TargetType type, int shiftX, int shiftY);
   void createEnemy();
   void createPlayer();
   void run();
@@ -76,7 +89,13 @@ class World {
   Hitbox& getHitbox(int ind);
   int getScore();
   void modifyScore(int score);
+  GameState getGameState();
+  void setEnd();
+  void setRetry();
+  bool getRetry();
+  bool getEnd();
 
  private:
   int getNextUnusedIndex();
+  void changeGameState();
 };

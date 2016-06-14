@@ -1,6 +1,7 @@
 #include "display.hpp"
 #include <iostream>
 #include "world.hpp"
+#include"sound.hpp"
 
 /**
  * @brief
@@ -24,11 +25,11 @@ Display::Display(sf::RenderWindow &w) :
   f.loadFromFile("../sprite/arial.ttf");
   mScoreText.setFont(f);
   mScoreText.setPosition(sf::Vector2f(10, 20));
-  mScoreText.setColor(sf::Color::Blue);
+  mScoreText.setColor(sf::Color::Cyan);
 
   mLifeText.setFont(f);
   mLifeText.setPosition(sf::Vector2f(500, 20));
-  mLifeText.setColor(sf::Color::Blue);
+  mLifeText.setColor(sf::Color::Cyan);
 }
 
 void Display::run(World &world) {
@@ -51,11 +52,17 @@ void Display::run(World &world) {
       mWindow.draw(world.getSprite(i).getSprite(X, Y));
     }
   }
-  if (world.getLife(0).getLife() == 0) {
+  if (world.getGameState() == LOSE) {
     sf::Text loseText("\t\tYOU LOSE\n\n Press escape to quit", f);
     loseText.setPosition(150, 300);
     loseText.setColor(sf::Color::Red);
     mWindow.draw(loseText);
+  }
+  else if (world.getGameState() == WIN) {
+    sf::Text winText("\tCongratulation !!!\n\n\t\t  YOU WIN\n\n Press escape to quit", f);
+    winText.setPosition(150, 300);
+    winText.setColor(sf::Color::White);
+    mWindow.draw(winText);
   }
   mWindow.display();
 }

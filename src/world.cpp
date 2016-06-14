@@ -3,12 +3,16 @@
 #include <vector>
 #include <string>
 #include <cassert>
+#include "sound.hpp"
+#include <boost/math/tools/polynomial.hpp>
 
 World::World() :
   mWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "INTouhou"),
   mDisplay(mWindow),
   mKeyController(mWindow),
-  mScore(0) {
+  mScore(0),
+  mGameState(PLAYING) {
+ Sound::play("/home/guillaume/Musique/music.wav");
   mWindow.setKeyRepeatEnabled(false);
   mWindow.setFramerateLimit(60);
   // entity number 0 is player
@@ -36,7 +40,8 @@ void World::run() {
   mClock.restart();
 
   while (mWindow.isOpen()) {
-    while(mLife[0].getLife() > 0) {
+    while (mWindow.isOpen() && mGameState == PLAYING) {
+      changeGameState();
       mKeyController.run(*this);
       mCreatePlayerBullet.run(*this);
       mCreateEnemyBullet.run(*this);
@@ -45,10 +50,11 @@ void World::run() {
       mPlayerMove.run(*this);
       mCollide.run(*this);
       mDisplay.run(*this);
-     }
+    }
+    changeGameState();
     mKeyController.run(*this);
     mDisplay.run(*this);
-   }
+  }
 }
 
 void World::createPlayer() {
@@ -83,7 +89,7 @@ void World::createEnemy() {
   mBitset[SPRITE][i] = true;
 
   mEvent[i].EmptyDirection();
-  mLife[i].setLife(200);
+  mLife[i].setLife(2);
   mPosition[i].setX(0);
   mPosition[i].setY(0);
   mSprite[i].set("../sprite/enemyShip.png");
@@ -202,4 +208,45 @@ int World::getScore() {
 
 void World::modifyScore(int score) {
   mScore += score;
+}
+
+GameState World::getGameState() {
+  return mGameState;
+}
+
+void World::changeGameState() {
+  if (mGameState == TRIGGERWIN) {
+    mGameState = WIN;
+    Sound::stop();
+    Sound::play("../sounds/win.wav");
+   }
+  else if (mGameState == TRIGGERLOSE)
+    mGameState = LOSE;
+  else if (mLife[0].getLife() < 1 && mGameState == PLAYING)
+      mGameState = TRIGGERLOSE;
+  else {
+    bool enemy = false;
+    for (size_t i = 1; i < mEntityType.size(); ++i)
+      if (mEntityType[i] == ENEMYSHIP)
+        enemy = true;
+    if (!enemy && mGameState == PLAYING)
+         mGameState = TRIGGERWIN;
+  }
+}
+
+void World::setEnd() {
+  mEnd = true;
+}
+
+void World::setRetry() {
+  mRetry = true;
+  Sound::stop();
+}
+
+bool World::getRetry() {
+  return mRetry;
+}
+
+bool World::getEnd() {
+  return mEnd;
 }
