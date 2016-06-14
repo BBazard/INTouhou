@@ -1,0 +1,46 @@
+#include "lagrange.hpp"
+#include <vector>
+
+/**
+ * Generate a Lagrange polynomial from a set of points
+ *
+ * It is the only polynomial P that satisfies :
+ * P(x) = y for each point (x, y)
+ * deg(P) = number of points
+ *
+ */
+void Lagrange::genPol(std::vector<float> x, std::vector<float> y) {
+  // or static_assert ?
+  assert(x.size() == y.size());
+  assert(x.size() > 1);
+  int size = x.size();
+
+  // empirically X can't be set in constructor
+  float seed = 0;
+  // segfault if default constructor
+  boost::math::tools::polynomial<float> X(&seed, 1);
+  X[0] = 0;
+  X[1] = 1;
+
+  boost::math::tools::polynomial<float> unit(X);
+  unit[0] = 1;
+  for (int i = 1; i < size; ++i)
+    unit[i] = 0;
+
+  std::vector<boost::math::tools::polynomial<float>> ll(size, unit);
+  for (int i = 0; i < size; ++i) {
+    for (int j = 0; j < size; ++j) {
+      if (i !=j)
+        ll[i] *= (X-x[j]) * (1 / (x[i]-x[j]));
+    }
+  }
+
+  auto ans(unit);
+  ans -= unit;
+
+  for (int i = 0; i < size; ++i)
+    ans += y[i]*ll[i];
+
+  mPol = ans;
+}
+
