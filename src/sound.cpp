@@ -2,6 +2,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <iostream>
 
 std::map<std::string, sf::SoundBuffer> Sound::mPoolBuffer;
 std::map<std::string, sf::Sound> Sound::mPoolSound;
@@ -19,9 +20,16 @@ void Sound::set(const std::string &snd) {
   mSound = &(mPoolSound[snd]);
 }
 
+/* You can play multiple sounds at the same time
+ * But you can only play the same song once at the same time */
 void Sound::play(const std::string &snd) {
   doSet(snd);
   mPoolSound[snd].play();
+}
+
+void Sound::stop() {
+  for (auto &n : mPoolSound)
+    n.second.stop();
 }
 
 void Sound::doSet(const std::string &snd) {

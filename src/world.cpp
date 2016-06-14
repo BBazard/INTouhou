@@ -12,7 +12,7 @@ World::World() :
   mKeyController(mWindow),
   mScore(0),
   mGameState(PLAYING) {
- Sound::play("/home/guillaume/Musique/music.wav");
+ Sound::play("../sounds/music.wav");
   mWindow.setKeyRepeatEnabled(false);
   mWindow.setFramerateLimit(60);
   // entity number 0 is player

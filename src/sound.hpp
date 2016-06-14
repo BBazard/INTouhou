@@ -16,6 +16,7 @@ class Sound {
   Sound(const std::string &snd);
   void set(const std::string &snd);
   static void play(const std::string &snd);
+  static void stop();
 
  private:
   static void doSet(const std::string &snd);
