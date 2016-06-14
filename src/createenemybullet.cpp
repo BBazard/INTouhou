@@ -14,6 +14,7 @@ void CreateEnemyBullet::run(World &world) {
         int y = world.getPosition(i).y() + world.getSprite(i).getSizeY();
         Position b(x, y);
         world.createBullet(b, "../sprite/bulletEnemy.png", PLAYER, 100, 100);
+        world.modifyScore(10);
       }
     }
   }

@@ -24,16 +24,24 @@ Display::Display(sf::RenderWindow &w) :
   f.loadFromFile("../sprite/arial.ttf");
   mScoreText.setFont(f);
   mScoreText.setPosition(sf::Vector2f(10, 20));
-  mScoreText.setColor(sf::Color::Red);
+  mScoreText.setColor(sf::Color::Blue);
+
+  mLifeText.setFont(f);
+  mLifeText.setPosition(sf::Vector2f(500, 20));
+  mLifeText.setColor(sf::Color::Blue);
 }
 
 void Display::run(World &world) {
   mWindow.clear(sf::Color::Black);
   mWindow.setView(mViewScore);
-  std::ostringstream score;
-  score << mScore;
-  mScoreText.setString(score.str());
+  std::ostringstream tmpScore;
+  std::ostringstream tmpLife;
+  tmpScore << "Score: " << world.getScore();
+  mScoreText.setString(tmpScore.str());
   mWindow.draw(mScoreText);
+  tmpLife << "Life: " << world.getLife(0).getLife();
+  mLifeText.setString(tmpLife.str());
+  mWindow.draw(mLifeText);
   mWindow.setView(mViewGame);
   mWindow.draw(mSpriteBackground.getSprite(0.0, 0.0));
   for (size_t i = 0; i < world.getBitset(SPRITE).size(); ++i) {
@@ -42,6 +50,12 @@ void Display::run(World &world) {
       float Y = world.getPosition(i).y();
       mWindow.draw(world.getSprite(i).getSprite(X, Y));
     }
+  }
+  if (world.getLife(0).getLife() == 0) {
+    sf::Text loseText("\t\tYOU LOSE\n\n Press escape to quit", f);
+    loseText.setPosition(150, 300);
+    loseText.setColor(sf::Color::Red);
+    mWindow.draw(loseText);
   }
   mWindow.display();
 }

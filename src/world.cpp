@@ -7,7 +7,8 @@
 World::World() :
   mWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "INTouhou"),
   mDisplay(mWindow),
-  mKeyController(mWindow) {
+  mKeyController(mWindow),
+  mScore(0) {
   mWindow.setKeyRepeatEnabled(false);
   mWindow.setFramerateLimit(60);
   // entity number 0 is player
@@ -35,15 +36,19 @@ void World::run() {
   mClock.restart();
 
   while (mWindow.isOpen()) {
+    while(mLife[0].getLife() > 0) {
+      mKeyController.run(*this);
+      mCreatePlayerBullet.run(*this);
+      mCreateEnemyBullet.run(*this);
+      mBulletMove.run(*this);
+      mEnemyMove.run(*this);
+      mPlayerMove.run(*this);
+      mCollide.run(*this);
+      mDisplay.run(*this);
+     }
     mKeyController.run(*this);
-    mCreatePlayerBullet.run(*this);
-    mCreateEnemyBullet.run(*this);
-    mBulletMove.run(*this);
-    mEnemyMove.run(*this);
-    mPlayerMove.run(*this);
-    mCollide.run(*this);
     mDisplay.run(*this);
-  }
+   }
 }
 
 void World::createPlayer() {
@@ -56,7 +61,7 @@ void World::createPlayer() {
   mBitset[HITBOX][i] = true;
 
   mEvent[i].EmptyDirection();
-  mLife[i].setLife(5);
+  mLife[i].setLife(2);
   // @todo change 200 with display
   mPosition[i].setX(WINDOW_WIDTH/2 - 40);
   mPosition[i].setY(5*WINDOW_HEIGHT/6);
@@ -78,7 +83,7 @@ void World::createEnemy() {
   mBitset[SPRITE][i] = true;
 
   mEvent[i].EmptyDirection();
-  mLife[i].setLife(20);
+  mLife[i].setLife(200);
   mPosition[i].setX(0);
   mPosition[i].setY(0);
   mSprite[i].set("../sprite/enemyShip.png");
@@ -191,3 +196,10 @@ Hitbox& World::getHitbox(int ind) {
   return mHitbox[ind];
 }
 
+int World::getScore() {
+  return mScore;
+}
+
+void World::modifyScore(int score) {
+  mScore += score;
+}

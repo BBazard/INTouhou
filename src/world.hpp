@@ -53,6 +53,8 @@ class World {
 
   sf::Clock mClock;
 
+  int mScore;
+
  public:
   World();
   void createBomb();
@@ -72,6 +74,8 @@ class World {
   Target& getTarget(int ind);
   Life& getLife(int ind);
   Hitbox& getHitbox(int ind);
+  int getScore();
+  void modifyScore(int score);
 
  private:
   int getNextUnusedIndex();

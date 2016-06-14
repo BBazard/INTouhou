@@ -24,9 +24,9 @@ class Display : public System {
   sf::Texture textureShip;
 
   sf::Text mScoreText;
+  sf::Text mLifeText;
   sf::Font f;
 
-  int mScore = 500000;
 
  public:
   Display(sf::RenderWindow &w);

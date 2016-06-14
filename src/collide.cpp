@@ -29,6 +29,7 @@ void Collide::run(World &world) {
            if (r1.intersects(r2)) {
              world.removeEntity(i);
              world.getLife(j).decreaseLife();
+             world.modifyScore(500);
 
              if (world.getLife(j).getLife() < 1)
               world.removeEntity(j);
