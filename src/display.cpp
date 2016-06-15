@@ -27,6 +27,11 @@ Display::Display(sf::RenderWindow &w) :
   mLifeText.setColor(sf::Color::Cyan);
 }
 
+/**
+ * Display 2 views. One for the score and the life of the player.
+ * The other one for the game. It displays a background sprite and
+ * each entity's sprite
+ */
 void Display::run(World &world) {
   if (world.getEvent(0).getMove()[BOMB]) {
     sf::RectangleShape a(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));

@@ -5,7 +5,10 @@ Collide::Collide() {
 }
 
 /**
- * @brief Collide::run
+ * Manage the collision between bullets and ships
+ * Each bullet have a target: if there is a collision
+ * between a bullet and a bullet's target, the target
+ * lose 1 life and the bullet is removed
  */
 void Collide::run(World &world) {
   for (size_t i = 0; i < world.getBitset(TARGET).size(); ++i) {

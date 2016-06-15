@@ -4,6 +4,11 @@
 CreateEnemyBullet::CreateEnemyBullet() : mLastTime(0), mTimeBetweenBullet(800) {
 }
 
+/**
+ * Create a bullet that target the player's ship from the enemy's ship
+ * with a bullet pattern that depends of the enemy's ship life
+ * Less the ship has life, more the game is difficult
+ */
 void CreateEnemyBullet::run(World &world) {
   if (world.getTime() > mLastTime + mTimeBetweenBullet) {
     while (world.getTime() > mLastTime + mTimeBetweenBullet)

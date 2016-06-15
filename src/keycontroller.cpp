@@ -5,6 +5,11 @@
 KeyController::KeyController(sf::RenderWindow &window) : mWindow(window) {
 }
 
+/**
+ * Manage the events from the keyboard
+ * When a key is pressed, the event component of the player is modified
+ * You can press multiple keys at the same time
+ */
 void KeyController::run(World &world) {
     while (mWindow.pollEvent(event)) {
       if (event.type == sf::Event::Closed)
@@ -44,6 +49,7 @@ void KeyController::run(World &world) {
           world.getEvent(0).popDirection(LEFT);
         if (event.key.code == sf::Keyboard::Right)
           world.getEvent(0).popDirection(RIGHT);
+        /* The bomb is poped automatically */
       }
   }
 }

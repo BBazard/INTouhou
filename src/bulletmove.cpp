@@ -4,6 +4,10 @@
 BulletMove::BulletMove() {
 }
 
+/**
+ * Manage the movement of all the bullet
+ * If a bullet leaves the screen, it's removed
+ */
 void BulletMove::run(World &world) {
   for (size_t i = 0; i < world.getBitset(TARGET).size(); ++i) {
     if (world.getBitset(DYNAMICS)[i]) {

@@ -5,6 +5,10 @@
 CreatePlayerBullet::CreatePlayerBullet() : mLastTime(0) {
 }
 
+/**
+ * Create a bullet that target the enemy's ship
+ * from the player's ship
+ */
 void CreatePlayerBullet::run(World &world) {
   int timeBetweenBullet = 200;  //  in milliseconds
   if (world.getTime() > mLastTime + timeBetweenBullet) {

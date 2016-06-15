@@ -5,6 +5,9 @@
 EnemyMove::EnemyMove() {
 }
 
+/**
+ * This system manage the movement of the enemy's ship
+ */
 void EnemyMove::run(World &world) {
   static bool right = true;
   for (size_t i = 0; i < world.getBitset(DYNAMICS).size(); ++i) {

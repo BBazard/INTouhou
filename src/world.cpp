@@ -61,7 +61,7 @@ void World::createPlayer() {
   mTarget[i].setTarget(tt);
   mEntityType[i] = PLAYERSHIP;
   mHitbox[i].setSize(mSprite[i].getSizeX(), mSprite[i].getSizeY());
-  mHitbox[i].setShift(50, 50);
+  mHitbox[i].setShift(55, 55);
 }
 
 void World::createEnemy() {
