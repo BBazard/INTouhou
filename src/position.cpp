@@ -9,7 +9,7 @@ float Position::x() { return mX; }
 float Position::y() { return mY; }
 
 /**
- * @brief Relative move
+ * Relative move
  */
 void Position::move(float x, float y) {
   mX += x;

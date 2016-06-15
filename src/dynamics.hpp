@@ -9,7 +9,6 @@ class Dynamics {
   Lagrange mLagrange;
   float mSpeedBulletPlayer;
   float mSpeedEnemy;
-  // int mAccel;
 
  public:
   Dynamics();

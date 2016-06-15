@@ -7,10 +7,7 @@
 #include "sprite.hpp"
 
 /**
- * @brief Display the window
- *
  * Display a window with 2 views, one for the game, the second for the score
- *
  */
 class Display : public System {
  private:

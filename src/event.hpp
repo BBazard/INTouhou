@@ -4,7 +4,6 @@
 
 class Event {
  private:
-//  std::queue<Direction> mMove;
   std::vector<bool> mMove;
 
  public:

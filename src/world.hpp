@@ -43,13 +43,11 @@ class World {
   EnemyMove mEnemyMove;
   Collide mCollide;
 
-  // std::vector<Animation> mAnimation;
   std::vector<Dynamics> mDynamics;
   std::vector<Event> mEvent;
   std::vector<Hitbox> mHitbox;
   std::vector<Life> mLife;
   std::vector<Position> mPosition;
-  // std::vector<Shoot> mShoot;
   std::vector<Sprite> mSprite;
   std::vector<Target> mTarget;
 
@@ -67,7 +65,6 @@ class World {
 
  public:
   World();
-//  void createBomb();
   void createBullet(Position &pos, std::string spritePath, TargetType type,
                     PatternType pattern = PATTERN1);
   void createEnemy();
