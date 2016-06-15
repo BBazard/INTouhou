@@ -33,6 +33,13 @@ Display::Display(sf::RenderWindow &w) :
 }
 
 void Display::run(World &world) {
+  if (world.getEvent(0).getMove()[BOMB]) {
+    sf::RectangleShape a(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+    a.setFillColor(sf::Color(255, 255, 255, 255));
+    mWindow.draw(a);
+    mWindow.display();
+    world.getEvent(0).popDirection(BOMB);
+  } else {
   mWindow.clear(sf::Color::Black);
   mWindow.setView(mViewScore);
   std::ostringstream tmpScore;
@@ -53,16 +60,20 @@ void Display::run(World &world) {
     }
   }
   if (world.getGameState() == LOSE) {
-    sf::Text loseText("\t\tYOU LOSE\n\n Press escape to quit", f);
+    sf::Text loseText("\t  YOU LOSE !\n\n"
+                      "Press Enter to retry\n\n"
+                      "Press Escape to quit", f);
     loseText.setPosition(150, 300);
     loseText.setColor(sf::Color::Red);
     mWindow.draw(loseText);
-  }
-  else if (world.getGameState() == WIN) {
-    sf::Text winText("\tCongratulation !!!\n\n\t\t  YOU WIN\n\n Press escape to quit", f);
+  } else if (world.getGameState() == WIN) {
+    sf::Text winText("\tCongratulation !\n\n\t\t  YOU WIN\n\n "
+                     " Press Enter to retry\n\n"
+                     " Press Escape to quit", f);
     winText.setPosition(150, 300);
     winText.setColor(sf::Color::White);
     mWindow.draw(winText);
   }
   mWindow.display();
+  }
 }

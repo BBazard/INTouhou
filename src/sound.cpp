@@ -2,7 +2,6 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include <iostream>
 
 std::map<std::string, sf::SoundBuffer> Sound::mPoolBuffer;
 std::map<std::string, sf::Sound> Sound::mPoolSound;

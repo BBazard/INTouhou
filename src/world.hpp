@@ -70,8 +70,8 @@ class World {
 
  public:
   World();
-  void createBomb();
-  void createBullet(Position &pos, std::string spritePath, TargetType type, int shiftX, int shiftY);
+//  void createBomb();
+  void createBullet(Position &pos, std::string spritePath, TargetType type);
   void createEnemy();
   void createPlayer();
   void run();

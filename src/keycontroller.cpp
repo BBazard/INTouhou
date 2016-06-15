@@ -24,11 +24,15 @@ void KeyController::run(World &world) {
         if (event.key.code == sf::Keyboard::Up)
           world.getEvent(0).pushDirection(UP);
         if (event.key.code == sf::Keyboard::Down)
-         world.getEvent(0).pushDirection(DOWN);
+          world.getEvent(0).pushDirection(DOWN);
         if (event.key.code == sf::Keyboard::Left)
-         world.getEvent(0).pushDirection(LEFT);
+          world.getEvent(0).pushDirection(LEFT);
         if (event.key.code == sf::Keyboard::Right)
-         world.getEvent(0).pushDirection(RIGHT);
+          world.getEvent(0).pushDirection(RIGHT);
+        if (event.key.code == sf::Keyboard::Space) {
+          world.getEvent(0).pushDirection(BOMB);
+          world.modifyScore(-1000);
+        }
       }
 
       if (event.type == sf::Event::KeyReleased) {
@@ -40,6 +44,8 @@ void KeyController::run(World &world) {
           world.getEvent(0).popDirection(LEFT);
         if (event.key.code == sf::Keyboard::Right)
           world.getEvent(0).popDirection(RIGHT);
+//        if (event.key.code == sf::Keyboard::Space)
+//          world.getEvent(0).popDirection(BOMB);
       }
   }
 }

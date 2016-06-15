@@ -4,15 +4,14 @@
 #include <string>
 #include <cassert>
 #include "sound.hpp"
-#include <boost/math/tools/polynomial.hpp>
 
 World::World() :
   mWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "INTouhou"),
   mDisplay(mWindow),
   mKeyController(mWindow),
-  mScore(0),
+  mScore(10000),
   mGameState(PLAYING) {
- Sound::play("../sounds/music.wav");
+  Sound::play("../sounds/music.wav");
   mWindow.setKeyRepeatEnabled(false);
   mWindow.setFramerateLimit(60);
   // entity number 0 is player
@@ -20,25 +19,12 @@ World::World() :
     mBitset.push_back(std::vector<bool>());
 }
 
-void World::createBomb() {
-  int i = getNextUnusedIndex();
-  mEntityType[i] = BOMB;
-
-  mBitset[POSITION][i] = true;
-  mBitset[SPRITE][i] = true;
-
-  mPosition[i].setX(0);
-  mPosition[i].setY(0);
-
-  mSprite[i].set("../sprite/vaisseau.png");
-}
-
 void World::run() {
   createPlayer();
   createEnemy();
 
   mClock.restart();
-
+  int cmpt = 0;
   while (mWindow.isOpen()) {
     while (mWindow.isOpen() && mGameState == PLAYING) {
       changeGameState();
@@ -89,7 +75,7 @@ void World::createEnemy() {
   mBitset[SPRITE][i] = true;
 
   mEvent[i].EmptyDirection();
-  mLife[i].setLife(2);
+  mLife[i].setLife(20);
   mPosition[i].setX(0);
   mPosition[i].setY(0);
   mSprite[i].set("../sprite/enemyShip.png");
@@ -102,7 +88,7 @@ void World::createEnemy() {
 
 // the position pos is the center of the bullet
 void World::createBullet(Position& pos, std::string spritePath,
-                         TargetType type, int shiftX, int shiftY) {
+                         TargetType type) {
   int i = getNextUnusedIndex();
 
   mBitset[DYNAMICS][i] = true;
@@ -122,8 +108,12 @@ void World::createBullet(Position& pos, std::string spritePath,
   mTarget[i].setTarget(tt);
   mEntityType[i] = BULLET;
   mHitbox[i].setSize(mSprite[i].getSizeX(), mSprite[i].getSizeY());
-  mHitbox[i].setShift(shiftX, shiftY);
   mDynamics[i].genPattern(mPosition[i], mPosition[0], PATTERN1);
+
+  if (spritePath == "../sprite/bulletEnemy.png")
+    mHitbox[i].setShift(100, 100);
+  else
+    mHitbox[i].setShift(0, 0);
 }
 
 std::vector<bool>& World::getBitset(ComponentType type) {
@@ -219,12 +209,13 @@ void World::changeGameState() {
     mGameState = WIN;
     Sound::stop();
     Sound::play("../sounds/win.wav");
-   }
-  else if (mGameState == TRIGGERLOSE)
+  } else if (mGameState == TRIGGERLOSE) {
     mGameState = LOSE;
-  else if (mLife[0].getLife() < 1 && mGameState == PLAYING)
+    Sound::stop();
+    Sound::play("../sounds/gameOver.wav");
+  } else if (mLife[0].getLife() < 1 && mGameState == PLAYING) {
       mGameState = TRIGGERLOSE;
-  else {
+    } else {
     bool enemy = false;
     for (size_t i = 1; i < mEntityType.size(); ++i)
       if (mEntityType[i] == ENEMYSHIP)

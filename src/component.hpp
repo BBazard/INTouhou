@@ -25,6 +25,7 @@ typedef enum {
   DOWN,
   LEFT,
   RIGHT,
+  BOMB,
   NONE,
 } Direction;
 
@@ -38,7 +39,6 @@ typedef enum {
   PLAYERSHIP,
   ENEMYSHIP,
   BULLET,
-  BOMB,
   NOTDEFINED,
 } EntityType;
 

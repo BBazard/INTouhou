@@ -23,8 +23,10 @@ void Collide::run(World &world) {
             hBullet.setPosition(posBullet);
             hEnemy.setPosition(posShip);
 
-            sf::FloatRect r1(hEnemy.x(), hEnemy.y(), hEnemy.w(), hEnemy.h());
-            sf::FloatRect r2(hBullet.x(), hBullet.y(), hBullet.w(), hBullet.h());
+            sf::FloatRect r1(hEnemy.x(), hEnemy.y(),
+                             hEnemy.w(), hEnemy.h());
+            sf::FloatRect r2(hBullet.x(), hBullet.y(),
+                             hBullet.w(), hBullet.h());
 
             if (r1.intersects(r2)) {
               world.removeEntity(i);
