@@ -4,6 +4,9 @@
 PlayerMove::PlayerMove() {
 }
 
+/**
+ * Take the events of the player and move the player's ship
+ */
 void PlayerMove::run(World &world) {
   int speed = 5;
   for (size_t i = 0; i < world.getBitset(EVENT).size(); ++i) {

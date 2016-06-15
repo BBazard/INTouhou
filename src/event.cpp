@@ -3,6 +3,9 @@
 #include <iostream>
 #include "component.hpp"
 
+/**
+ * The player's ship can move in multiple directions at the same time
+ */
 Event::Event() {
   mMove = std::vector<bool>(5, false);
 }

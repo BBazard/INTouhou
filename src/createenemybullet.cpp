@@ -19,18 +19,26 @@ void CreateEnemyBullet::run(World &world) {
         int y = world.getPosition(i).y() + world.getSprite(i).getSizeY();
         Position b(x, y);
         if (world.getLife(i).getLife() > 150) {
-          world.createBullet(b, "../sprite/bulletEnemy.png", PLAYER, PATTERN1);
-          world.createBullet(b, "../sprite/bulletEnemy.png", PLAYER, PATTERN2);
+          world.createBullet(b, "../sprite/bulletEnemy.png",
+                             PLAYER, PATTERN1);
+          world.createBullet(b, "../sprite/bulletEnemy.png",
+                             PLAYER, PATTERN2);
         } else if (world.getLife(i).getLife() > 100) {
             mTimeBetweenBullet = 600;
-            world.createBullet(b, "../sprite/enemyBullet2.png", PLAYER, PATTERN3);
-            world.createBullet(b, "../sprite/enemyBullet2.png", PLAYER, PATTERN4);
+            world.createBullet(b, "../sprite/enemyBullet2.png",
+                               PLAYER, PATTERN3);
+            world.createBullet(b, "../sprite/enemyBullet2.png",
+                               PLAYER, PATTERN4);
           } else {
               mTimeBetweenBullet = 1000;
-              world.createBullet(b, "../sprite/bulletEnemy.png", PLAYER, PATTERN1);
-              world.createBullet(b, "../sprite/bulletEnemy.png", PLAYER, PATTERN2);
-              world.createBullet(b, "../sprite/enemyBullet2.png", PLAYER, PATTERN3);
-              world.createBullet(b, "../sprite/enemyBullet2.png", PLAYER, PATTERN4);
+              world.createBullet(b, "../sprite/bulletEnemy.png",
+                                 PLAYER, PATTERN1);
+              world.createBullet(b, "../sprite/bulletEnemy.png",
+                                 PLAYER, PATTERN2);
+              world.createBullet(b, "../sprite/enemyBullet2.png",
+                                 PLAYER, PATTERN3);
+              world.createBullet(b, "../sprite/enemyBullet2.png",
+                                 PLAYER, PATTERN4);
             }
       }
     }

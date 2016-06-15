@@ -28,11 +28,8 @@ typedef enum {
   WIN,
   TRIGGERWIN,
 } GameState;
-/**
- * @brief
- *
- *
- */
+
+
 class World {
  private:
   sf::RenderWindow mWindow;
@@ -71,7 +68,8 @@ class World {
  public:
   World();
 //  void createBomb();
-  void createBullet(Position &pos, std::string spritePath, TargetType type, PatternType patern = PATTERN1);
+  void createBullet(Position &pos, std::string spritePath, TargetType type,
+                    PatternType pattern = PATTERN1);
   void createEnemy();
   void createPlayer();
   void run();

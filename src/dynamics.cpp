@@ -35,13 +35,8 @@ void Dynamics::genPattern(Position &from, Position &to, PatternType pt) {
   std::vector<float> y;
   switch (pt) {
     case PATTERN1:
-//      if (from.x() < WINDOW_WIDTH/2) {
         x = {from.x(), 3*WINDOW_WIDTH/4, to.x()};
         y = {from.y(), WINDOW_HEIGHT/2, to.y()};
-//      } else {
-//        x = {from.x(), WINDOW_WIDTH/4, to.x()};
-//        y = {from.y(), WINDOW_HEIGHT/2, to.y()};
-//      }
       break;
     case PATTERN2:
       x = {from.x(), WINDOW_WIDTH/4, to.x()};
@@ -49,13 +44,13 @@ void Dynamics::genPattern(Position &from, Position &to, PatternType pt) {
       break;
     case PATTERN3:
       x = {from.x(), from.x() + 50, from.x() - 50, from.x() - 50, 0};
-      y = {from.y(), WINDOW_HEIGHT/4, WINDOW_HEIGHT/2, 3*WINDOW_HEIGHT/4, WINDOW_HEIGHT};
-//      x = {from.x(), to.x()};
-//      y = {from.y(), to.y()};
+      y = {from.y(), WINDOW_HEIGHT/4, WINDOW_HEIGHT/2,
+           3*WINDOW_HEIGHT/4, WINDOW_HEIGHT};
       break;
     case PATTERN4:
       x = {from.x(), from.x() - 50, from.x() + 50, from.x() +50, WINDOW_WIDTH};
-      y = {from.y(), WINDOW_HEIGHT/4, WINDOW_HEIGHT/2, 3*WINDOW_HEIGHT/4, WINDOW_HEIGHT};
+      y = {from.y(), WINDOW_HEIGHT/4, WINDOW_HEIGHT/2,
+           3*WINDOW_HEIGHT/4, WINDOW_HEIGHT};
     default:
       break;
   }

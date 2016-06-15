@@ -87,7 +87,7 @@ void World::createEnemy() {
 
 // the position pos is the center of the bullet
 void World::createBullet(Position& pos, std::string spritePath,
-                         TargetType type, PatternType patern) {
+                         TargetType type, PatternType pattern) {
   int i = getNextUnusedIndex();
 
   mBitset[DYNAMICS][i] = true;
@@ -107,7 +107,8 @@ void World::createBullet(Position& pos, std::string spritePath,
   mTarget[i].setTarget(tt);
   mEntityType[i] = BULLET;
   mHitbox[i].setSize(mSprite[i].getSizeX(), mSprite[i].getSizeY());
-  mDynamics[i].genPattern(mPosition[i], mPosition[0], patern);
+  mDynamics[i].genPattern(mPosition[i], mPosition[0], pattern);
+  // if the bullet is a player's bullet, the pattern dosen't matter
 
   if (spritePath == "../sprite/bulletEnemy.png")
     mHitbox[i].setShift(100, 100);
