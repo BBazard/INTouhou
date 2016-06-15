@@ -6,16 +6,16 @@ class Position;
 class Hitbox {
  private:
   sf::RectangleShape mHitbox;
-  int mX;
-  int mY;
+  float mX;
+  float mY;
  public:
   Hitbox();
-  void setSize(int w, int h);
+  void setSize(float w, float h);
   void setPosition(Position pos);
-  void setShift(int x, int y);
-  int x();
-  int y();
-  int w();
-  int h();
+  void setShift(float x, float y);
+  float x();
+  float y();
+  float w();
+  float h();
   sf::RectangleShape& getHitbox();
 };

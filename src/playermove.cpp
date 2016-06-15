@@ -46,9 +46,9 @@ void PlayerMove::run(World &world) {
           pos.move(0, speed);
       }
       if (move[BOMB]) {
-        for (size_t i = 0; i < world.getBitset(TARGET).size(); ++i) {
-          if (world.getEntityType(i) == BULLET)
-            world.removeEntity(i);
+        for (size_t j = 0; j < world.getBitset(TARGET).size(); ++j) {
+          if (world.getEntityType(j) == BULLET)
+            world.removeEntity(j);
         }
       }
     }

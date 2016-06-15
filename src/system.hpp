@@ -9,4 +9,5 @@ class World;
 class System {
  public:
   virtual void run(World &world) = 0;
+  virtual ~System() {}
 };

@@ -51,6 +51,7 @@ void Dynamics::genPattern(Position &from, Position &to, PatternType pt) {
       x = {from.x(), from.x() - 50, from.x() + 50, from.x() +50, WINDOW_WIDTH};
       y = {from.y(), WINDOW_HEIGHT/4, WINDOW_HEIGHT/2,
            3*WINDOW_HEIGHT/4, WINDOW_HEIGHT};
+      break;
     default:
       break;
   }

@@ -12,27 +12,27 @@ sf::RectangleShape &Hitbox::getHitbox() {
   return mHitbox;
 }
 
-void Hitbox::setSize(int w, int h) {
+void Hitbox::setSize(float w, float h) {
   mHitbox.setSize(sf::Vector2f(w, h));
 }
 
-void Hitbox::setShift(int x, int y) {
+void Hitbox::setShift(float x, float y) {
   mX = x;
   mY = y;
 }
 
-int Hitbox::x() {
+float Hitbox::x() {
   return mHitbox.getPosition().x + mX/2;
 }
 
-int Hitbox::y() {
+float Hitbox::y() {
   return mHitbox.getPosition().y + mY/2;
 }
 
-int Hitbox::w() {
+float Hitbox::w() {
   return mHitbox.getSize().x - mX;
 }
 
-int Hitbox::h() {
+float Hitbox::h() {
   return mHitbox.getSize().y - mY;
 }

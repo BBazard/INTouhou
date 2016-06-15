@@ -35,7 +35,7 @@ void Lagrange::genPol(std::vector<float> x, std::vector<float> y) {
   // or static_assert ?
   assert(x.size() == y.size());
   assert(x.size() > 1);
-  int size = x.size();
+  auto size = x.size();
 
   // empirically X can't be set in constructor
   float seed = 0;
