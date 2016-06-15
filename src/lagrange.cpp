@@ -44,8 +44,7 @@ void Lagrange::genPol(std::vector<float> x, std::vector<float> y) {
 
   boost::math::tools::polynomial<float> unit(X);
   unit[0] = 1;
-  for (int i = 1; i < size; ++i)
-    unit[i] = 0;
+  unit[1] = 0;
 
   std::vector<boost::math::tools::polynomial<float>> ll(size, unit);
   for (int i = 0; i < size; ++i) {
