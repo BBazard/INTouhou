@@ -1,7 +1,12 @@
 #include "display.hpp"
-#include <iostream>
+#include <sstream>
+#include <vector>
+#include <cstddef>
+#include "component.hpp"
+#include "event.hpp"
+#include "life.hpp"
+#include "position.hpp"
 #include "world.hpp"
-#include"sound.hpp"
 
 Display::Display(sf::RenderWindow &w) :
   mWindow(w),

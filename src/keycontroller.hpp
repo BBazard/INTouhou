@@ -3,6 +3,8 @@
 #include "system.hpp"
 #include "event.hpp"
 
+class World;
+
 class KeyController : public System {
  private:
   sf::RenderWindow &mWindow;

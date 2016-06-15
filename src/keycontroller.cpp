@@ -1,5 +1,7 @@
 #include "keycontroller.hpp"
-#include <iostream>
+#include "SFML/Graphics.hpp"
+#include "event.hpp"
+#include "component.hpp"
 #include "world.hpp"
 
 KeyController::KeyController(sf::RenderWindow &window) : mWindow(window) {

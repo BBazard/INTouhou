@@ -1,4 +1,11 @@
 #include "bulletmove.hpp"
+#include <vector>
+#include <cstddef>
+#include "component.hpp"
+#include "position.hpp"
+#include "sprite.hpp"
+#include "target.hpp"
+#include "dynamics.hpp"
 #include "world.hpp"
 
 BulletMove::BulletMove() {

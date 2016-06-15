@@ -1,5 +1,7 @@
 #include "lagrange.hpp"
 #include <vector>
+#include <cstddef>
+#include <cassert>
 
 /**
  * Evaluate the Lagrange polynomial in a point

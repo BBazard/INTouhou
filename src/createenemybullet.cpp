@@ -1,4 +1,10 @@
 #include "createenemybullet.hpp"
+#include <vector>
+#include <cstddef>
+#include "component.hpp"
+#include "life.hpp"
+#include "position.hpp"
+#include "sprite.hpp"
 #include "world.hpp"
 
 CreateEnemyBullet::CreateEnemyBullet() : mLastTime(0), mTimeBetweenBullet(800) {

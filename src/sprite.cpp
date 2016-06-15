@@ -2,6 +2,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <utility>
 
 std::map<std::string, sf::Texture> Sprite::mPoolTexture;
 std::map<std::string, sf::Sprite> Sprite::mPoolSprite;

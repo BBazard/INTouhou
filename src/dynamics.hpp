@@ -1,8 +1,9 @@
 #pragma once
-
-#include "position.hpp"
+#include <vector>
 #include "lagrange.hpp"
 #include "component.hpp"
+
+class Position;
 
 class Dynamics {
  private:

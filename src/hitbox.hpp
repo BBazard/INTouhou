@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "component.hpp"
-#include "position.hpp"
+
+class Position;
 
 class Hitbox {
  private:

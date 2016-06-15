@@ -1,9 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 #include <vector>
 #include <string>
 #include "component.hpp"
-#include "system.hpp"
 #include "life.hpp"
 #include "sprite.hpp"
 #include "position.hpp"
@@ -19,7 +19,6 @@
 #include "enemymove.hpp"
 #include "collide.hpp"
 #include "hitbox.hpp"
-
 
 typedef enum {
   PLAYING,

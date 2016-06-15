@@ -1,6 +1,9 @@
 #include "createPlayerBullet.hpp"
 #include "world.hpp"
 #include "sound.hpp"
+#include "position.hpp"
+#include "sprite.hpp"
+#include "component.hpp"
 
 CreatePlayerBullet::CreatePlayerBullet() : mLastTime(0) {
 }

@@ -1,6 +1,6 @@
 #include "event.hpp"
 #include <vector>
-#include <iostream>
+#include <cstddef>
 #include "component.hpp"
 
 /**

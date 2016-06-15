@@ -1,6 +1,7 @@
 #include "world.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <cstddef>
 #include <string>
 #include <cassert>
 #include "sound.hpp"

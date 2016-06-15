@@ -1,6 +1,10 @@
 #include "enemymove.hpp"
-#include <iostream>
+#include <vector>
+#include <cstddef>
 #include "world.hpp"
+#include "dynamics.hpp"
+#include "position.hpp"
+#include "sprite.hpp"
 
 EnemyMove::EnemyMove() {
 }

@@ -1,4 +1,5 @@
 #include "hitbox.hpp"
+#include "position.hpp"
 
 Hitbox::Hitbox() {
 }

@@ -1,5 +1,11 @@
 #include "collide.hpp"
+#include <vector>
+#include <cstddef>
+#include "hitbox.hpp"
+#include "life.hpp"
+#include "target.hpp"
 #include "world.hpp"
+#include "component.hpp"
 
 Collide::Collide() {
 }

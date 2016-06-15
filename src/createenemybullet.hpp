@@ -1,5 +1,6 @@
 #pragma once
-#include "system.hpp"
+
+class World;
 
 class CreateEnemyBullet {
  private:

@@ -1,4 +1,10 @@
 #include "playermove.hpp"
+#include <vector>
+#include <cstddef>
+#include "component.hpp"
+#include "event.hpp"
+#include "position.hpp"
+#include "sprite.hpp"
 #include "world.hpp"
 
 PlayerMove::PlayerMove() {

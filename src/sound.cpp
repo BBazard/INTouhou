@@ -1,7 +1,9 @@
 #include "sound.hpp"
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include <map>
 #include <string>
+#include <utility>
 
 std::map<std::string, sf::SoundBuffer> Sound::mPoolBuffer;
 std::map<std::string, sf::Sound> Sound::mPoolSound;
