@@ -44,8 +44,6 @@ void KeyController::run(World &world) {
           world.getEvent(0).popDirection(LEFT);
         if (event.key.code == sf::Keyboard::Right)
           world.getEvent(0).popDirection(RIGHT);
-//        if (event.key.code == sf::Keyboard::Space)
-//          world.getEvent(0).popDirection(BOMB);
       }
   }
 }

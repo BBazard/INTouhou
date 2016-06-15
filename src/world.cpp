@@ -24,9 +24,9 @@ void World::run() {
   createEnemy();
 
   mClock.restart();
-  int cmpt = 0;
   while (mWindow.isOpen()) {
     while (mWindow.isOpen() && mGameState == PLAYING) {
+      mScore -= 0.5;
       changeGameState();
       mKeyController.run(*this);
       mCreatePlayerBullet.run(*this);
@@ -53,8 +53,7 @@ void World::createPlayer() {
   mBitset[HITBOX][i] = true;
 
   mEvent[i].EmptyDirection();
-  mLife[i].setLife(2);
-  // @todo change 200 with display
+  mLife[i].setLife(5);
   mPosition[i].setX(WINDOW_WIDTH/2 - 40);
   mPosition[i].setY(5*WINDOW_HEIGHT/6);
   mSprite[i].set("../sprite/vaisseau.png");
@@ -75,7 +74,7 @@ void World::createEnemy() {
   mBitset[SPRITE][i] = true;
 
   mEvent[i].EmptyDirection();
-  mLife[i].setLife(20);
+  mLife[i].setLife(200);
   mPosition[i].setX(0);
   mPosition[i].setY(0);
   mSprite[i].set("../sprite/enemyShip.png");
@@ -88,7 +87,7 @@ void World::createEnemy() {
 
 // the position pos is the center of the bullet
 void World::createBullet(Position& pos, std::string spritePath,
-                         TargetType type) {
+                         TargetType type, PatternType patern) {
   int i = getNextUnusedIndex();
 
   mBitset[DYNAMICS][i] = true;
@@ -108,7 +107,7 @@ void World::createBullet(Position& pos, std::string spritePath,
   mTarget[i].setTarget(tt);
   mEntityType[i] = BULLET;
   mHitbox[i].setSize(mSprite[i].getSizeX(), mSprite[i].getSizeY());
-  mDynamics[i].genPattern(mPosition[i], mPosition[0], PATTERN1);
+  mDynamics[i].genPattern(mPosition[i], mPosition[0], patern);
 
   if (spritePath == "../sprite/bulletEnemy.png")
     mHitbox[i].setShift(100, 100);

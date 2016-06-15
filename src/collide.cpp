@@ -6,7 +6,6 @@ Collide::Collide() {
 
 /**
  * @brief Collide::run
- * @todo when a player die, end the game
  */
 void Collide::run(World &world) {
   for (size_t i = 0; i < world.getBitset(TARGET).size(); ++i) {
@@ -57,6 +56,7 @@ void Collide::run(World &world) {
            if (r1.intersects(r2)) {
              world.removeEntity(i);
              world.getLife(j).decreaseLife();
+             world.modifyScore(-1000);
 
              if (world.getLife(j).getLife() < 1)
               world.removeEntity(j);

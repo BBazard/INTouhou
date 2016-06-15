@@ -4,6 +4,7 @@ typedef enum {
   PATTERN1,
   PATTERN2,
   PATTERN3,
+  PATTERN4,
   PATTERNUMBER,
 } PatternType;
 

@@ -3,11 +3,6 @@
 #include "world.hpp"
 #include"sound.hpp"
 
-/**
- * @brief
- *
- * @todo exceptions
- */
 Display::Display(sf::RenderWindow &w) :
   mWindow(w),
   mSpriteBackground("../sprite/background.png"),

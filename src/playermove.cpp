@@ -37,7 +37,7 @@ void PlayerMove::run(World &world) {
           pos.move(0, speed);
       }
       if (move[BOMB]) {
-        for (int i = 0; i < world.getBitset(TARGET).size(); ++i) {
+        for (size_t i = 0; i < world.getBitset(TARGET).size(); ++i) {
           if (world.getEntityType(i) == BULLET)
             world.removeEntity(i);
         }

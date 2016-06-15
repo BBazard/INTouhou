@@ -62,7 +62,7 @@ class World {
 
   sf::Clock mClock;
 
-  int mScore;
+  float mScore;
   GameState mGameState;
   bool mRetry = false;
   bool mEnd = false;
@@ -71,7 +71,7 @@ class World {
  public:
   World();
 //  void createBomb();
-  void createBullet(Position &pos, std::string spritePath, TargetType type);
+  void createBullet(Position &pos, std::string spritePath, TargetType type, PatternType patern = PATTERN1);
   void createEnemy();
   void createPlayer();
   void run();
