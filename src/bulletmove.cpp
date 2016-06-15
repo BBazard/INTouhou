@@ -10,7 +10,7 @@ void BulletMove::run(World &world) {
       if (world.getTarget(i).getTarget() == ENEMY)
         world.getDynamic(i).moveV(world.getPosition(i));
       else
-        world.getDynamic(i).moveV2(world.getPosition(i));
+        world.getDynamic(i).movePattern(world.getPosition(i));
 
       auto& s = world.getSprite(i);
       auto& pos = world.getPosition(i);

@@ -1,6 +1,13 @@
 #pragma once
 
 typedef enum {
+  PATTERN1,
+  PATTERN2,
+  PATTERN3,
+  PATTERNUMBER,
+} PatternType;
+
+typedef enum {
   ANIMATION,
   DYNAMICS,
   EVENT,
